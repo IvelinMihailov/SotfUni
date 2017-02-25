@@ -1,8 +1,8 @@
 using System;
 
-class IncrementVariable
+public class IncrementVariable
 {
-    static void Main()
+    public static void Main()
     {
         int number =int.Parse(Console.ReadLine());
         byte byteValue = byte.MaxValue;
@@ -17,6 +17,7 @@ class IncrementVariable
         }
 
         Console.WriteLine(number);
+
         if (overflow)
         {
             Console.WriteLine($"Overflowed {counter} times");
