@@ -1,0 +1,26 @@
+using System;
+
+public class NthDigit
+{
+    public static void Main()
+    {
+        var number = int.Parse(Console.ReadLine());
+        var Enteredindex = int.Parse(Console.ReadLine());
+        var numberOfCurrentIndex=NumberOfCurrentIndex(number, Enteredindex);
+        Console.WriteLine(numberOfCurrentIndex);
+        
+    }
+
+    public static int NumberOfCurrentIndex(int number, int Enteredindex)
+    {    
+        var counter = 1;
+        while (counter != Enteredindex)
+        {
+            number /= 10;
+            counter++;
+        }
+        var lastDigit = number % 10;
+        return lastDigit;
+    }
+}
+
