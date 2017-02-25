@@ -1,0 +1,17 @@
+using System;
+
+public class HelloName
+{
+    public static void Main()
+    {
+        string name = Console.ReadLine();
+        PrintHello();
+        Console.Write(" {0}!", name);
+    }
+
+    public static void PrintHello()
+    {
+        Console.Write("Hello,");
+    }
+}
+
