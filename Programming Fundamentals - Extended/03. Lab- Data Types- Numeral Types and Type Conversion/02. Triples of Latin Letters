@@ -1,0 +1,20 @@
+using System;
+
+public class TriplesOfLatinLetters
+{
+    public static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+
+        for (char letterOne = 'a'; letterOne < 'a'+n; letterOne++)
+        {
+            for (char letterTwo = 'a'; letterTwo < 'a' + n; letterTwo++)
+            {
+                for (char letterThree = 'a'; letterThree < 'a' + n; letterThree++)
+                {
+                    Console.WriteLine($"{letterOne}{letterTwo}{letterThree}");
+                }
+            }
+        }
+    }
+}
