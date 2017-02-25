@@ -1,0 +1,10 @@
+using System;
+
+public class FromTerabytesToBits
+{
+    public static void Main()
+    {
+        double TB =double.Parse(Console.ReadLine());
+        Console.WriteLine(TB*1024*1024*1024*1024*8);
+    }
+}
