@@ -1,0 +1,95 @@
+using System;
+
+public class DataOverflow
+{
+    public static void Main()
+    {
+        decimal numberOne = decimal.Parse(Console.ReadLine());
+        decimal numbeerTwo = decimal.Parse(Console.ReadLine());
+
+        decimal maxNumber = Math.Max(numberOne, numbeerTwo);
+        decimal minNumber = Math.Min(numberOne, numbeerTwo);
+
+        string typeMaxNumber = TypeMaxNumber(maxNumber);
+        string typeMinNumber = TypeMinNumber(minNumber);
+
+        decimal value = ValueType(typeMinNumber);
+        decimal contains = maxNumber / value;
+
+        Console.WriteLine($"bigger type: {typeMaxNumber}");
+        Console.WriteLine($"smaller type: {typeMinNumber}");
+        Console.WriteLine($"{maxNumber} can overflow {typeMinNumber} {Math.Round(contains)} times");
+
+    }
+
+    public static decimal ValueType(string typeMinNumber)
+    {
+        ulong value = 0;
+        if (typeMinNumber == "byte")
+        {
+            value = byte.MaxValue;
+        }
+        if (typeMinNumber == "ushort")
+        {
+            value = ushort.MaxValue;
+        }
+        if (typeMinNumber == "uint")
+        {
+            value = uint.MaxValue;
+        }
+        if (typeMinNumber == "ulong")
+        {
+            value = ulong.MaxValue;
+        }
+
+        return value;
+    }
+
+    public static string TypeMaxNumber(decimal maxNumber)
+    {
+        string typeMaxNumber = "";
+     
+        if (byte.MinValue <= maxNumber && maxNumber <= byte.MaxValue)
+        {
+            typeMaxNumber = "byte";
+        }
+        else if (ushort.MinValue <= maxNumber && maxNumber <= ushort.MaxValue)
+        {
+            typeMaxNumber = "ushort";
+        }
+        else if (uint.MinValue <= maxNumber && maxNumber <= uint.MaxValue)
+        {
+            typeMaxNumber = "uint";
+        }
+        else if (ulong.MinValue <= maxNumber && maxNumber <= ulong.MaxValue)
+        {
+            typeMaxNumber = "ulong";
+        }
+
+        return typeMaxNumber;
+    }
+
+    public static string TypeMinNumber(decimal minNumber)
+    {
+        string typeMinNumber = "";
+
+        if (byte.MinValue <= minNumber && minNumber <= byte.MaxValue)
+        {
+            typeMinNumber = "byte";
+        }
+        else if (ushort.MinValue <= minNumber && minNumber <= ushort.MaxValue)
+        {
+            typeMinNumber = "ushort";
+        }
+        else if (uint.MinValue <= minNumber && minNumber <= uint.MaxValue)
+        {
+            typeMinNumber = "uint";
+        }
+        else if (ulong.MinValue <= minNumber && minNumber <= ulong.MaxValue)
+        {
+            typeMinNumber = "ulong";
+        }
+
+        return typeMinNumber;
+    }
+}
