@@ -1,0 +1,54 @@
+using System;
+
+public class PrintingTriangle
+{
+    public static void Main()
+    {
+        int n = int.Parse(Console.ReadLine());
+        TopOfTriangle(n);
+        MidOfTriangle(n);
+        Console.WriteLine();
+        BotOfTriangle(n);
+    }
+
+    public static int BotOfTriangle(int number)
+    {
+        for (int rows = number - 1; rows >= 1; rows--)
+        {
+            for (int cols = 1; cols <= rows; cols++)
+            {
+                Console.Write("{0} ", cols);
+            }
+
+            Console.WriteLine();
+        }
+
+        return 1;
+    }
+
+    public static int MidOfTriangle(int number)
+    {
+        for (int i = 1; i <= number; i++)
+        {
+            Console.Write("{0} ", i);
+        }
+
+        return 1;
+    }
+
+    public static int TopOfTriangle(int number)
+    {
+        for (int rows = 1; rows <= number - 1; rows++)
+        {
+            for (int cols = 1; cols <= rows; cols++)
+            {
+                Console.Write("{0} ", cols);
+            }
+
+            Console.WriteLine();
+        }
+
+        return 1;
+    }
+}
+
