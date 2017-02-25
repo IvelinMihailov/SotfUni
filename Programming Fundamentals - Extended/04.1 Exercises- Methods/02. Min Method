@@ -1,0 +1,21 @@
+using System;
+
+public class MinMethod
+{
+    public static void Main()
+    {
+        var num1 =int.Parse(Console.ReadLine());
+        var num2 =int.Parse(Console.ReadLine());
+        var num3 =int.Parse(Console.ReadLine());
+
+        var minNumber = Math.Min(num3, GetMin(num1, num2));
+        Console.WriteLine(minNumber);
+    }
+
+    public static int GetMin(int num1,int num2)
+    {
+        int minByNum1AndNum2 = Math.Min(num1,num2);
+        return minByNum1AndNum2;
+    }
+}
+
