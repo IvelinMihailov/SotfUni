@@ -1,0 +1,11 @@
+using System;
+
+public class VariableInHexadecimalFormat
+{
+    public static void Main()
+    {
+        string HEX = Console.ReadLine();
+        int HEXtoDEC = Convert.ToInt32(HEX, 16);
+        Console.WriteLine(HEXtoDEC);
+    }
+}
