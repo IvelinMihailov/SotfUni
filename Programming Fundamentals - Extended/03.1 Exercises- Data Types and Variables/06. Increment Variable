@@ -1,0 +1,25 @@
+using System;
+
+class IncrementVariable
+{
+    static void Main()
+    {
+        int number =int.Parse(Console.ReadLine());
+        byte byteValue = byte.MaxValue;
+        var counter=0;
+        bool overflow = false;
+
+        while (number > byteValue)
+        {
+            overflow = true;
+            number = number - byteValue-1;
+            counter++;
+        }
+
+        Console.WriteLine(number);
+        if (overflow)
+        {
+            Console.WriteLine($"Overflowed {counter} times");
+        }
+    }
+}
