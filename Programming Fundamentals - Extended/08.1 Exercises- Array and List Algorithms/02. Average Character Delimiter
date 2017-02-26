@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class AverageCharacterDelimiter
+{
+    public static void Main()
+    {
+        var text = Console.ReadLine();
+
+        var splipText = text.Split();
+        var sum = 0;
+        var allSum = 0;
+        var counter = 0;
+
+        for (int currentWord = 0; currentWord < splipText.Length; currentWord++)
+        {
+            var LetterInWord = splipText[currentWord];
+            for (int currentLetterInWord = 0; currentLetterInWord < LetterInWord.Length; currentLetterInWord++)
+            {
+                var intValue = LetterInWord[currentLetterInWord];
+                sum = sum + intValue;
+                counter++;
+            }
+
+        }
+
+        var delimiter = UpperDelimiter(sum, counter);
+
+        for (int i = 0; i < splipText.Length; i++)
+        {
+            Console.Write(splipText[i]);
+            if (i!=splipText.Length-1)
+            {
+                Console.Write(delimiter);
+            }       
+        }
+    }
+
+    private static string UpperDelimiter(int sum, int counter)
+    {
+        double ASCIIcod = Math.Truncate((double)sum / counter);
+        var charDelimiter = (char)ASCIIcod;
+        return charDelimiter.ToString().ToUpper();
+    }
+}
