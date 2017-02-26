@@ -8,7 +8,7 @@ public class SortArrayUsingInsertionSort
     {
         var arr = Console.ReadLine().Split().Select(int.Parse).ToArray();
 
-        for (int i = 0; i < arr.Length; i++)
+        for (int i = 0; i < arr.Length-1; i++)
         {
             var j = 1 + i;
             while (j>0)
