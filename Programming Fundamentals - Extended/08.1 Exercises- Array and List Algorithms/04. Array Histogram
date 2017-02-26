@@ -28,7 +28,7 @@ public class ArrayHistogram
         }
     }
 
-    private static int GetSum(Dictionary<string, int> wordOccurrence)
+    public static int GetSum(Dictionary<string, int> wordOccurrence)
     {
         var sum = 0;
         foreach (var item in wordOccurrence)
