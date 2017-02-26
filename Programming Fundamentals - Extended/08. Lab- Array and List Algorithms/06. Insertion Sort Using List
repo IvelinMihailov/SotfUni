@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class SortArrayUsingInsertionSort
+{
+    public static void Main()
+    {
+        var arr = Console.ReadLine().Split().Select(int.Parse).ToArray();
+
+        for (int i = 0; i < arr.Length-1; i++)
+        {
+            var j = 1 + i;
+            while (j > 0)
+            {
+                if (arr[j] < arr[j - 1])
+                {
+                    var temp = arr[j];
+                    arr[j] = arr[j - 1];
+                    arr[j - 1] = temp;
+                }
+
+                j--;
+            }
+        }
+
+        Console.WriteLine(string.Join(" ", arr));
+    }
+}
