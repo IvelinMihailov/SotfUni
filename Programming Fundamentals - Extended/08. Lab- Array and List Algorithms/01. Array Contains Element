@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class ArrayContainsElement
+{
+    public static void Main()
+    {
+        var array = Console.ReadLine().Split().Select(int.Parse).ToArray();
+        var equal =int.Parse(Console.ReadLine());
+        bool equalNumber = false;
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i]== equal) 
+            {
+                equalNumber = true;
+                break;
+            }
+        }
+
+        if (equalNumber)
+        {
+            Console.WriteLine("yes");
+        }
+        else
+        {
+            Console.WriteLine("no");
+        }       
+    }
+}
+
