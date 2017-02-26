@@ -37,7 +37,7 @@ public class AverageCharacterDelimiter
         }
     }
 
-    private static string UpperDelimiter(int sum, int counter)
+    public static string UpperDelimiter(int sum, int counter)
     {
         double ASCIIcod = Math.Truncate((double)sum / counter);
         var charDelimiter = (char)ASCIIcod;
