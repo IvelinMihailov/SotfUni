@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class ArrayHistogram
+{
+    public static void Main()
+    {
+        var input = Console.ReadLine().Split();
+        var wordOccurrence = new Dictionary<string, int>();
+
+        foreach (var item in input)
+        {
+            if (!wordOccurrence.ContainsKey(item))
+            {
+                wordOccurrence[item] = 0;
+            }
+            wordOccurrence[item]++;
+        }
+
+        int sum = GetSum(wordOccurrence);
+
+        foreach (var item in wordOccurrence.OrderByDescending(x=>x.Value))
+        {
+            double currentValue = item.Value;
+            double rates = (currentValue / sum)*100;
+            Console.WriteLine($"{item.Key} -> {item.Value} times ({rates:f2}%)");
+        }
+    }
+
+    private static int GetSum(Dictionary<string, int> wordOccurrence)
+    {
+        var sum = 0;
+        foreach (var item in wordOccurrence)
+        {
+            sum += item.Value;
+        }
+
+        return sum;
+    }
+}
