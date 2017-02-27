@@ -1,0 +1,61 @@
+using System;
+using System.Linq;
+
+public class Batteries
+{
+    public static void Main()
+    {
+        var batteries = Console.ReadLine().Split().Select(double.Parse).ToList();
+        var usageForHour = Console.ReadLine().Split().Select(double.Parse).ToList();
+        var hours = double.Parse(Console.ReadLine());
+        var countBatery = 1;
+
+        for (int i = 0; i < batteries.Count; i++)
+        {
+            double currentBateryCapacity = batteries[i];
+       
+            for (int j = 0; j < usageForHour.Count; j++)
+            {
+                var currBateryUsage = usageForHour[i];
+                var sumUsage = currBateryUsage * hours;
+
+                Result(hours, countBatery, currentBateryCapacity, currBateryUsage, sumUsage);
+                j++;
+                countBatery++;
+                break;
+            }
+        }
+    }
+
+    public static void Result(double hours, int countBatery, double currentBateryCapacity, double currBateryUsage, double sumUsage)
+    {
+        if (sumUsage <= currentBateryCapacity)
+        {
+            var life = currentBateryCapacity - sumUsage;
+            var lifePercentage = (life / currentBateryCapacity) * 100;
+
+            Console.WriteLine($"Battery {countBatery}: {life:f2} mAh ({lifePercentage:f2})%");
+        }
+        else
+        {
+            var lasted = Lasted(hours, currentBateryCapacity, currBateryUsage);
+
+            Console.WriteLine($"Battery {countBatery}: dead (lasted {lasted} hours)");
+        }
+    }
+
+    public static int Lasted(double hours,double currentBateryCapacity,double currBateryUsage)
+    {
+        var counter = 0;
+        var sumUsage = 0d;
+        while (sumUsage<=currentBateryCapacity)
+        {
+            sumUsage = sumUsage+currBateryUsage;
+            counter++; 
+        }
+
+        return counter;
+    }
+}
+
+
