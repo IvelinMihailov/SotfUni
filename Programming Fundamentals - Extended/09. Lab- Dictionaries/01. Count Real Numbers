@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class CountRealNumbers
+{
+    public static void Main()
+    {
+        var number = Console.ReadLine().Split().Select(double.Parse).ToList();
+
+        var occurrences = new SortedDictionary<double, int>();
+
+        foreach (var item in number)
+        {
+            if (!occurrences.ContainsKey(item))
+            {
+                occurrences[item]= 0;
+            }
+            occurrences[item]++;
+        }
+
+        foreach (var item in occurrences)
+        {
+            Console.WriteLine($"{item.Key} -> {item.Value}");
+        }
+    
+    }
+}
