@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class OddOccurrences
+{
+    public static void Main()
+    {
+        var number = Console.ReadLine().ToLower()
+            .Split(new char[] { ' ' },StringSplitOptions.RemoveEmptyEntries);
+        var occurrences = new Dictionary<string, int>();
+
+        foreach (var item in number)
+        {
+            if (!occurrences.ContainsKey(item))
+            {
+                occurrences[item]= 0;
+            }
+            occurrences[item]++;
+        }
+
+        var oddOccurencesWords = new List<string>();
+
+        foreach (var item in occurrences)
+        {
+            var value = item.Value;
+            if (value%2!=0)
+            {
+                oddOccurencesWords.Add(item.Key);
+            }
+        }
+
+        Console.WriteLine(string.Join(", ", oddOccurencesWords));  
+    }
+}
