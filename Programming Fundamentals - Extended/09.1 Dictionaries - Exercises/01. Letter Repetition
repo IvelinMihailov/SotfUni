@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class LetterRepetition
+{
+    public static void Main()
+    {
+        var text = Console.ReadLine();
+
+        var repeatSymbol = new Dictionary<char, int>();
+
+        foreach (var item in text)
+        {
+            if (!repeatSymbol.ContainsKey(item))
+            {
+                repeatSymbol[item] = 0;
+            }
+            repeatSymbol[item]++;
+        }
+
+        PrintDictionary(repeatSymbol);
+
+    }
+
+    public static void PrintDictionary(Dictionary<char, int> repeatSymbol)
+    {
+        foreach (var item in repeatSymbol)
+        {
+            Console.WriteLine($"{item.Key} -> {item.Value}");
+        }
+    }
+}
