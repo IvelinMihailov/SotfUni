@@ -1,0 +1,127 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class UserLogins
+{
+    public static void Main()
+    {
+        var line = Console.ReadLine();
+
+        var nameAge = new Dictionary<string, int>();
+        var nameSalary = new Dictionary<string, decimal>();
+        var namePosition = new Dictionary<string, string>();
+
+        while (line != "filter base")
+        {
+            var splitLine = line.Split();
+            var name = splitLine[0];
+            var infoName = splitLine[splitLine.Length - 1];
+
+            var salary = 0m;
+            bool chackSalary = decimal.TryParse(infoName, out salary);
+            bool isDouble = unchecked(salary == (int)salary);
+
+            var age = 0;
+            bool chackAge = int.TryParse(infoName, out age);
+
+            Age(nameAge, name, infoName, chackAge, isDouble);
+
+            Salary(nameSalary, name, infoName, chackSalary, isDouble);
+
+            Position(namePosition, name, infoName, chackAge, chackSalary);
+
+            line = Console.ReadLine();
+            //Console.WriteLine();
+        }
+
+        var print = Console.ReadLine();
+
+        if (print == "Age")
+        {
+            PrintAge(nameAge);
+        }
+        else if (print == "Salary")
+        {
+            PrintSalary(nameSalary);
+        }
+        else if (print == "Position")
+        {
+            PrintPosition(namePosition);
+        }
+    }
+
+    public static void Age(Dictionary<string, int> nameAge, string name, string infoName, bool chackAge, bool isDouble)
+    {
+        if (chackAge && isDouble)
+        {
+            if (!nameAge.ContainsKey(name))
+            {
+                var ageEmployee = int.Parse(infoName);
+                nameAge[name] = ageEmployee;
+            }
+        }
+    }
+
+
+    public static void PrintPosition(Dictionary<string, string> namePosition)
+    {
+        foreach (var item in namePosition)
+        {
+            var name = item.Value;
+            var position = item.Key;
+            Console.WriteLine($"Name: {item.Key}");
+            Console.WriteLine($"Position: {item.Value}");
+            Console.WriteLine(new string('=', 20)); ;
+        }
+    }
+
+    public static void PrintSalary(Dictionary<string, decimal> nameSalary)
+    {
+        foreach (var item in nameSalary)
+        {
+            var name = item.Value;
+            var salary = item.Key;
+            Console.WriteLine($"Name: {item.Key}");
+            Console.WriteLine($"Salary: {item.Value:f2}");
+            Console.WriteLine(new string('=',20));
+        }
+    }
+
+    public static void PrintAge(Dictionary<string, int> nameAge)
+    {
+        foreach (var item in nameAge)
+        {
+            var name = item.Value;
+            var age = item.Key;
+            Console.WriteLine($"Name: {item.Key}");
+            Console.WriteLine($"Age: {item.Value}");
+            Console.WriteLine(new string('=', 20));
+        }
+    }
+
+    public static void Position(Dictionary<string, string> namePosition, string name, string infoName, bool chackAge, bool chackSelary)
+    {
+        if (!chackSelary && !chackAge)
+        {
+            if (!namePosition.ContainsKey(name))
+            {
+                namePosition[name] = infoName;
+            }
+        }
+    }
+
+    public static void Salary(Dictionary<string, decimal> nameSalary, string name, string infoName, bool chackSalary, bool isInteger)
+    {
+        if (chackSalary && !isInteger)
+        {
+            if (!nameSalary.ContainsKey(name))
+            {
+                var ageEmployee = decimal.Parse(infoName);
+                nameSalary[name] = ageEmployee;
+            }
+        }
+    }
+
+
+}
