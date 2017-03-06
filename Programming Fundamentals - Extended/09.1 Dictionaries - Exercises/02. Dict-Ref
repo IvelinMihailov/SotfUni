@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class DictRef
+{
+    public static void Main()
+    {
+        var line = Console.ReadLine().Split();
+        var result = new Dictionary<string, int>();
+
+        while (line[0] != "end")
+        {
+            var firstElemet = line[0];
+            var lastElemet = line[line.Length - 1];
+
+            var parseNubmer = 0;
+            bool number = int.TryParse(lastElemet, out parseNubmer);
+
+            if (number)
+            {
+                result[firstElemet] = parseNubmer;
+            }
+            else
+            {
+                if (result.ContainsKey(lastElemet))
+                {
+                    var reference = result[lastElemet];
+                    result[firstElemet] = reference;
+                }              
+            }
+            
+            line = Console.ReadLine().Split();
+        }
+
+        foreach (var item in result)
+        {
+            Console.WriteLine($"{item.Key} === {item.Value}");
+        }
+    }
+}
