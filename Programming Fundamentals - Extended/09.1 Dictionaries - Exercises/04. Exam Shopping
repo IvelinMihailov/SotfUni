@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class ExamShapping
+{
+    public static void Main()
+    {
+        var line = Console.ReadLine();
+        var shop = new Dictionary<string, int>();
+        
+        while (line != "shopping time")
+        {
+            var splitLine = line.Split();
+            var stock = splitLine[1];
+            var quantity = int.Parse(splitLine[2]);
+
+            if (!shop.ContainsKey(stock))
+            {
+                shop[stock] = 0;
+            }
+
+            shop[stock] += quantity;
+
+            line = Console.ReadLine();
+        }
+
+        line = Console.ReadLine();
+
+        while (line !="exam time")
+        {
+            var splitLine = line.Split();
+            var stock = splitLine[1];
+            var quantity = int.Parse(splitLine[2]);
+
+            if (!shop.ContainsKey(stock))
+            {
+                Console.WriteLine($"{stock} doesn't exist");
+            }
+            else
+            {
+                if (shop[stock] == 0)
+                {
+                    Console.WriteLine($"{stock} out of stock");
+                }
+                else
+                {
+                    shop[stock] -= quantity;
+
+                    if (shop[stock] < 0)
+                    {
+                        shop[stock] = 0;
+                    }
+                }
+            }
+
+            line = Console.ReadLine();
+        }
+
+        foreach (var item in shop)
+        {
+            if (item.Value > 0)
+            {
+                Console.WriteLine($"{item.Key} -> {item.Value}");
+            }
+        }
+
+    }
+}
