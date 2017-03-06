@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class MixedPhones
+{
+    public static void Main()
+    {
+        var line = Console.ReadLine();
+        var phoneBook = new SortedDictionary<string, long>();
+
+        while (line != "Over")
+        {
+            var tokens = line.Split(" :".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var firstElemet = tokens[0];
+            var lastElemet = tokens[1];
+
+            long parsedFirstElemet = 0;
+            bool first = long.TryParse(firstElemet, out parsedFirstElemet);
+
+            if (first)
+            {
+                phoneBook[lastElemet] = parsedFirstElemet;
+            }
+            else
+            {
+                long parsedSecondElemet = 0;
+                bool second = long.TryParse(lastElemet, out parsedSecondElemet);
+
+                phoneBook[firstElemet] = parsedSecondElemet;
+            }
+
+            line = Console.ReadLine();
+        }
+
+        foreach (var item in phoneBook)
+        {
+            Console.WriteLine($"{item.Key} -> {item.Value}");
+        }
+    }
+}
