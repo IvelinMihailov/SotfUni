@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Shellbound
+{
+    public static void Main()
+    {
+        var line = Console.ReadLine();
+
+        var crabShell = new Dictionary<string, HashSet<int>>();
+
+        while (line!="Aggregate")
+        {
+            var tokens = line.Split();
+            var location = tokens[0];
+            var shell = int.Parse(tokens[1]);
+
+            if (!crabShell.ContainsKey(location))
+            {
+                crabShell[location]=new HashSet<int>();
+            }
+
+            crabShell[location].Add(shell);
+
+            line = Console.ReadLine();
+        }
+
+        foreach (var item in crabShell)
+        {
+            var shells = item.Value;
+            var sumOfShells = shells.Sum();
+            var average = (int)shells.Average();
+            var result = sumOfShells - average;
+
+            Console.WriteLine($"{item.Key} -> {string.Join(", ",shells)} ({result})");
+        }     
+    }  
+}
