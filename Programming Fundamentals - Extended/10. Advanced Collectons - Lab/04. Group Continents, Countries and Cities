@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class CitiesByContinentAndCountry
+{
+    public static void Main()
+    {
+        var n = int.Parse(Console.ReadLine());
+        var citys = new SortedDictionary<string, SortedDictionary<string, SortedSet<string>>>();
+        for (int i = 0; i < n; i++)
+        {
+            var lineDate = Console.ReadLine().Split();
+            var continent = lineDate[0];
+            var country = lineDate[1];
+            var city = lineDate[2];
+
+            if (!citys.ContainsKey(continent))
+            {
+                citys[continent] = new SortedDictionary<string, SortedSet<string>>();
+            }
+            if (!citys[continent].ContainsKey(country))
+            {
+                citys[continent][country] = new SortedSet<string>();
+            }
+            citys[continent][country].Add(city);
+        }
+
+        foreach (var item in citys)
+        {
+            var continent = item.Key;
+            var sitysInCountry = item.Value;
+
+            Console.WriteLine($"{continent}:");
+
+            foreach (var city in sitysInCountry)
+            {
+                Console.WriteLine($"  {city.Key} -> {string.Join(", ", city.Value)}");
+            }
+        }
+    }
+
+    
+}
