@@ -4,8 +4,6 @@ using System.Linq;
 
 public class ForumTopics
 {
-    private static IEnumerable<object> collection;
-
     public static void Main()
     {
         var lineInfo = Console.ReadLine();
