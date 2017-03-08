@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class DictRefAdvanced
+{
+    public static void Main()
+    {
+        var line = Console.ReadLine();
+
+        var nameNumbers = new Dictionary<string, List<int>>();       
+
+        while (line != "end")
+        {
+            var tokens = line.Split(
+                new char[] { ' ', '>', '-', ',' },
+                StringSplitOptions.RemoveEmptyEntries);
+
+            var nameLeft = tokens[0];
+            var number = 0;
+
+            if (int.TryParse(tokens[1], out number))
+            {
+                if (!nameNumbers.ContainsKey(nameLeft))
+                {
+                    nameNumbers[nameLeft] = new List<int>();
+                }
+
+                for (int i = 1; i < tokens.Length; i++)
+                {
+                    nameNumbers[nameLeft].Add(int.Parse(tokens[i]));
+                }             
+            }
+            else
+            {
+                if (nameNumbers.ContainsKey(tokens[1]))
+                {
+                    nameNumbers[nameLeft] = new List<int>(nameNumbers[tokens[1]]);
+                }             
+            }
+
+            line = line = Console.ReadLine();
+        }
+
+        foreach (var item in nameNumbers)
+        {
+            Console.WriteLine($"{item.Key} === {string.Join(", ", item.Value)}");
+        }
+    }
+}
