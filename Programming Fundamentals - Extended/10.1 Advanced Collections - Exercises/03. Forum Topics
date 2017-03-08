@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class ForumTopics
+{
+    private static IEnumerable<object> collection;
+
+    public static void Main()
+    {
+        var lineInfo = Console.ReadLine();
+        var topics = new Dictionary<string, HashSet<string>>();
+        var topic = "";
+        while (lineInfo !="filter")
+        {
+            var tokens = lineInfo.Split(
+               new char[] { ' ', '>', '-', ',' },
+               StringSplitOptions.RemoveEmptyEntries);
+
+            topic = tokens[0];
+
+            if (!topics.ContainsKey(topic))
+            {
+                topics[topic] = new HashSet<string>();
+            }
+
+            for (int i = 1; i < tokens.Length; i++)
+            {
+                topics[topic].Add(tokens[i]);
+            }
+
+            lineInfo = Console.ReadLine();
+        }
+
+        var print = Console.ReadLine().Split(new char[] 
+        {' ',','},StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (var item in topics)
+        {
+            var contains = true;
+            for (int i = 0; i < print.Length; i++)
+            {
+                if (item.Value.Contains(print[i]))
+                {
+                    contains = true; 
+                }
+                else
+                {
+                    contains = false;
+                    break;
+                }
+            }
+
+            if (contains)
+            {
+                PrintResult(item);
+            }
+        }      
+
+    }
+
+    public static void PrintResult(KeyValuePair<string, HashSet<string>> item)
+    {
+        Console.Write($"{item.Key} | ");
+        int counter = 0;
+        foreach (var item2 in item.Value)
+        {
+            counter++;
+            if (counter != item.Value.Count)
+            {
+                Console.Write("#");
+                Console.Write($"{item2}, ");
+            }
+            else
+            {
+                Console.Write("#");
+                Console.Write($"{item2}");
+            }
+        }
+        Console.WriteLine();
+    }
+}
