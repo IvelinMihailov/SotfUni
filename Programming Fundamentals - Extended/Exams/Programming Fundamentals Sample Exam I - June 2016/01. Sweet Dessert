@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Globalization;
+
+public class SweetDessert
+{
+    public static void Main()
+    {
+        var cashIvancho = decimal.Parse(Console.ReadLine());
+        var numberOfGuests = decimal.Parse(Console.ReadLine());
+        var priceBananas = decimal.Parse(Console.ReadLine());
+        var priceAggs = decimal.Parse(Console.ReadLine());
+        var priceBerries = decimal.Parse(Console.ReadLine());
+
+        var set = Math.Ceiling(numberOfGuests / 6);
+
+        var neededMoney = set * (2 * priceBananas) +
+                         set * (4 * priceAggs) +
+                         set * (0.2m * priceBerries);
+
+        if (neededMoney <= cashIvancho)
+        {
+            Console.WriteLine($"Ivancho has enough money - it would cost {neededMoney:f2}lv.");
+        }
+        else
+        {
+            var diff = Math.Abs(neededMoney - cashIvancho);
+            Console.WriteLine($"Ivancho will have to withdraw money - he will need {diff:f2}lv more.");
+        }
+    }
+}
