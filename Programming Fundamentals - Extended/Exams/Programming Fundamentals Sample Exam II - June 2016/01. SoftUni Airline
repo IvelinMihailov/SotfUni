@@ -1,0 +1,44 @@
+using System;
+
+public class SoftUniAirline
+{
+    public static void Main()
+    {
+        var allFlight =int.Parse(Console.ReadLine());
+
+        var allProft = 0m;
+
+        for (int i = 0; i < allFlight; i++)
+        {
+            var adultPassengersCount = decimal.Parse(Console.ReadLine());
+            var adultTicktePrice = decimal.Parse(Console.ReadLine());
+            var youthPassengersCount = decimal.Parse(Console.ReadLine());
+            var youthTicktePrice = decimal.Parse(Console.ReadLine());
+            var fuelPricePerHour = decimal.Parse(Console.ReadLine());
+            var fuelComsuptionPerHour = decimal.Parse(Console.ReadLine());
+            var flightDuration = decimal.Parse(Console.ReadLine());
+
+            var income = (adultPassengersCount * adultTicktePrice) + (youthPassengersCount * youthTicktePrice);
+
+            var expenses = fuelPricePerHour * fuelComsuptionPerHour * flightDuration;
+
+            var profit = income - expenses;
+
+            allProft = allProft + profit;
+
+            if (income >= expenses)
+            {
+                Console.WriteLine("You are ahead with {0:f3}$.", profit);
+            }
+            else
+            {
+                Console.WriteLine("We've got to sell more tickets! We've lost {0:f3}$.", profit);
+            }
+        }
+
+        var averageProfit = allProft / allFlight;
+
+        Console.WriteLine("Overall profit -> {0:f3}$.", allProft);
+        Console.WriteLine("Average profit -> {0:f3}$.", averageProfit);
+    }
+}
