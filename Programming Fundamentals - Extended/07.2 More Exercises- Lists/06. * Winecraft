@@ -1,0 +1,81 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Winecraft
+{
+    static void Main()
+    {
+        var grapes = Console.ReadLine().Split().Select(int.Parse).ToList();
+        var growthDays = int.Parse(Console.ReadLine());
+
+        while (grapes.Count> growthDays)
+        {
+            for (int i = 0; i < growthDays; i++)
+            {
+                IncrementGrapes(grapes);
+
+                for (int j = 0; j < grapes.Count-1; j++)
+                {
+                    ProccesGrapes(grapes, j);
+                }
+            }
+
+            RemoveBadGrapes(grapes, growthDays);
+        }
+
+        Console.WriteLine(string.Join(" ",grapes));
+    }
+
+    private static void ProccesGrapes(List<int> grapes, int j)
+    {
+        var isfirstElement = j == 0;
+        var isLastElement = grapes.Count - 1 == 0;
+
+        if (!isfirstElement && !isLastElement)
+        {
+            var previousIndex = j - 1;
+            var nextIndex = j + 1;
+
+            var greaterThanPrivious = grapes[j] > grapes[previousIndex];
+            var greaterThanNext = grapes[j] > grapes[nextIndex];
+            var isGraterGrapes = greaterThanPrivious && greaterThanNext;
+            if (isGraterGrapes)
+            {
+                grapes[j]--;
+
+                if (grapes[previousIndex] > 0)
+                {
+                    grapes[j]++;
+                    grapes[previousIndex] = Math.Max(grapes[previousIndex] - 2, 0);
+                }
+
+                if (grapes[nextIndex] > 0)
+                {
+                    grapes[j]++;
+                    grapes[nextIndex] = Math.Max(grapes[nextIndex] - 2, 0);
+                }
+            }
+        }
+    }
+
+    private static void IncrementGrapes(List<int> grapes)
+    {
+        for (int k = 0; k < grapes.Count; k++)
+        {
+            grapes[k]++;
+        }
+    }
+
+    private static void RemoveBadGrapes(List<int> grapes, int growthDays)
+    {
+        for (int i = 0; i < grapes.Count; i++)
+        {
+            if (grapes[i] <= growthDays)
+            {
+                grapes.RemoveAt(i);
+                i--;
+            }
+        }
+    }
+}
