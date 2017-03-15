@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class RemoveNegativesAndReverse
+{
+    public static void Main()
+    {
+        var number = Console.ReadLine()
+            .Split()
+            .Select(int.Parse)
+            .ToList();
+
+        var positiveNumber = new List<int>();
+
+        for (int i = 0; i < number.Count; i++)
+        {
+            if (number[i]>0)
+            {
+                positiveNumber.Add(number[i]);
+            }
+        }
+
+        positiveNumber.Reverse();
+        int countNumbers = positiveNumber.Count();
+
+        if (countNumbers>0)
+        {
+            Console.WriteLine(string.Join(" ", positiveNumber));
+        }
+        else
+        {
+            Console.WriteLine("empty");
+        }
+    }
+}
