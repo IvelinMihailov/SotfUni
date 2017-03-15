@@ -1,0 +1,21 @@
+using System;
+using System.Collections.Generic;
+
+public class RemoveElementsAtOddPositions
+{
+    public static void Main()
+    {
+        var words = Console.ReadLine().Split();
+        var result = new List<string>();
+
+        for (int i = 1; i < words.Length; i++)
+        {
+            if (i%2!=0)
+            {
+                result.Add(words[i]);
+            }
+        }
+
+        Console.WriteLine(string.Join("",result));
+    }
+}
