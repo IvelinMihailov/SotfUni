@@ -1,0 +1,28 @@
+using System;
+
+public class CountOfCapitalLettersInArray
+{
+    public static void Main()
+    {
+        var text = Console.ReadLine().Split(' ');
+        var textElement = new int[text.Length];
+
+        int counter = 0;
+        
+        for (int i = 0; i < text.Length; i++)
+        {
+            var currentLatter = text[i];
+            if (currentLatter.Length==1)
+            {
+                char capitalLetter = currentLatter[0];
+                bool capital = char.IsUpper(capitalLetter);
+                if (capital)
+                {
+                    counter++;
+                }          
+            }
+        }
+
+        Console.WriteLine(counter);
+    }
+}
