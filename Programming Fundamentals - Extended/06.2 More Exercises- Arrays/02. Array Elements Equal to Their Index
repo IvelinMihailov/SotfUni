@@ -1,0 +1,18 @@
+using System;
+using System.Linq;
+
+public class ArrayElementsEqualToTheirIndex
+{
+    public static void Main()
+    {
+        var number = Console.ReadLine().Split().Select(int.Parse).ToArray();
+
+        for (int i = 0; i < number.Length; i++)
+        {
+            if (number[i]==i)
+            {
+                Console.Write($"{number[i]} ");
+            }
+        }
+    }
+}
