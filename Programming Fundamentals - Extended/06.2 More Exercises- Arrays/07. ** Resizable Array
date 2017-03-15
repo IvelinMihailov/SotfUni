@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class PowerPlants
+{
+    public static void Main()
+    {
+        var command = Console.ReadLine().Split();
+
+        var listNumber = new List<string>();
+
+        while (command[0]!="end")
+        {
+            if (command[0]=="push")
+            {
+                listNumber.Add(command[1]);
+            }
+
+            if (command[0] == "removeAt")
+            {
+                var parsed = int.Parse(command[1]);
+                listNumber.RemoveAt(parsed);
+            }
+
+            if (command[0] == "pop")
+            {
+                listNumber.RemoveAt(listNumber.Count - 1);
+            }
+
+            if (command[0] == "clear")
+            {
+                listNumber.Clear();
+            }
+
+            command = Console.ReadLine().Split();
+        }
+
+        if (listNumber.Count==0)
+        {
+            Console.WriteLine("array empty");
+        }
+        else
+        {
+            Console.WriteLine(string.Join(" ", listNumber));
+        }
+        
+  
