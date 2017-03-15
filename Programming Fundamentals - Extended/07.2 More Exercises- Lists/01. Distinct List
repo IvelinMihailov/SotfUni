@@ -1,0 +1,14 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class DistinctList
+{
+    public static void Main()
+    {
+        var number = Console.ReadLine().Split().Select(int.Parse).ToList();
+        var distinctElements =number.Distinct();
+
+        Console.WriteLine(string.Join(" ", distinctElements));
+    }
+}
