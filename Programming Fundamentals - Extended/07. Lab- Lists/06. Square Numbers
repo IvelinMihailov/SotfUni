@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class SquareNumbers
+{
+    public static void Main()
+    {
+        var numbers = Console.ReadLine()
+            .Split()
+            .Select(int.Parse)
+            .ToList();
+
+        var sqrtNumber = new List<int>();
+
+        foreach (var item in numbers)
+        {
+            var sqrt = Math.Sqrt(item);
+
+            if (sqrt==(int)sqrt)
+            {
+                sqrtNumber.Add(item);
+            }
+        }
+
+        sqrtNumber.Sort();
+        sqrtNumber.Reverse();
+
+        Console.WriteLine(string.Join(" ",sqrtNumber));
+    }
+}
