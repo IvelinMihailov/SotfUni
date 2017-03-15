@@ -1,0 +1,29 @@
+using System;
+
+public class CountOfGivenElementInArray
+{
+    public static void Main()
+    {
+        var numberAsString = Console.ReadLine().Split(' ');
+        var arrayNumbers = new int[numberAsString.Length];
+        var existsNumber =int.Parse(Console.ReadLine());
+
+
+        for (int i = 0; i < arrayNumbers.Length; i++)
+        {
+            arrayNumbers[i] = int.Parse(numberAsString[i]);
+        }
+
+        int counter = 0;
+
+        for (int i = 0; i < arrayNumbers.Length; i++)
+        {
+            if (arrayNumbers[i]==existsNumber)
+            {
+                counter++;
+            }
+        }
+
+        Console.WriteLine(counter);
+    }
+}
