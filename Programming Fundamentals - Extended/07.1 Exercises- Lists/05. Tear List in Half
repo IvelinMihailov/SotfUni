@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class TearListInHalf
+{
+    public static void Main()
+    {
+        var number = Console.ReadLine().Split().Select(int.Parse).ToList();
+        var list1 = new List<int>();
+        var list2 = new List<int>();
+
+        for (int i = 0; i < number.Count / 2; i++)
+        {
+            list1.Add(number[i]);
+        }
+
+        for (int i = list1.Count; i < number.Count; i++)
+        {
+            list2.Add(number[i]);
+        }
+
+        var resultList = new List<int>();
+        var counter = 0;
+
+        foreach (var item in list2)
+        {
+            var lastNubmer = item % 10;
+            var firstNUmber = item / 10;
+
+            for (int i = counter; i < list1.Count; i++)
+            {
+                resultList.Add(firstNUmber);
+                resultList.Add(list1[counter]);
+                resultList.Add(lastNubmer);
+                counter++;
+                break;
+            }
+
+        }
+
+        Console.WriteLine(string.Join(" ",resultList));
+    }   
+}
