@@ -1,0 +1,27 @@
+using System;
+
+public class LargestElementInArray
+{
+    public static void Main()
+    {
+        int numbers =int.Parse(Console.ReadLine());
+        var array = new int[numbers];
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i] =int.Parse(Console.ReadLine());
+        }
+
+        int maxNumber = int.MinValue;
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i]>maxNumber)
+            {
+                maxNumber = array[i];
+            }
+        }
+
+        Console.WriteLine(maxNumber);
+    }
+}
