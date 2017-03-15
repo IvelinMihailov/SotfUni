@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class FlipListSides
+{
+    public static void Main()
+    {
+        var number = Console.ReadLine().Split().ToArray();
+        var lenght = number.Length;
+        var rotate = lenght / 2 - 1;   
+        int counter = 0;
+
+        for (int i = 1; i < number.Length - 1; i++)
+        {
+            if (counter == rotate)
+            {
+                break;
+            }
+            var currentNumber = number[i];
+            var nextNumber = number[number.Length - 1 - i];
+            number[i] = nextNumber;
+            number[number.Length - 1 - i] = currentNumber;
+
+            counter++;
+
+        }
+
+        Console.WriteLine(string.Join(" ", number));
+
+    }
+}
