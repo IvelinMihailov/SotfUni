@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class AppendLists
+{
+    public static void Main()
+    {
+        var number = Console.ReadLine().Split('|');
+        var dashSplit = number;
+        var result = new List<string>();
+
+        for (int i = 0; i < dashSplit.Length; i++)
+        {
+            var spaceSplit = dashSplit[i].Split(new char[] { ' ' }
+            , StringSplitOptions.RemoveEmptyEntries).ToList();
+            spaceSplit.Reverse();
+
+            for (int j = 0; j < spaceSplit.Count; j++)
+            {
+                result.Add(spaceSplit[j]);
+            }
+        }
+
+        result.Reverse();
+        Console.WriteLine(string.Join(" ", result));
+    }
+}
