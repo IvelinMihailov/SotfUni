@@ -1,0 +1,26 @@
+using System;
+
+public class MultiplyAnArrayofDoubles
+{
+    public static void Main()
+    {
+        var numberInText = Console.ReadLine().Split(' ');
+        var multiply =double.Parse(Console.ReadLine());
+
+        var number = new double[numberInText.Length];
+        var numberMultiple = new double[number.Length];
+
+
+        for (int i = 0; i < number.Length; i++)
+        {
+            number[i] = double.Parse(numberInText[i]);
+            numberMultiple[i] = number[i] * multiply;
+        }
+
+        for (int i = 0; i < numberMultiple.Length; i++)
+        {
+            Console.Write($"{numberMultiple[i]} ");
+        }
+
+    }
+}
