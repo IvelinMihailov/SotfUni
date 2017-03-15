@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class NoteStatistics
+{
+    public static void Main()
+    {
+        var frequencies = Console.ReadLine().Split().Select(double.Parse).ToArray();
+        var notes = Notes();
+        var notesSharp = NotesSharp();
+
+        var listNotes = new List<string>();
+        var listNotesFrequencies = new List<double>();
+        var allnotes = new List<string>();
+        var listNotesSharp= new List<string>();
+        var listNotesSharpFrequencies = new List<double>();
+
+        for (int i = 0; i < frequencies.Length; i++)
+        {
+            foreach (var item in notes)
+            {
+                if (item.Value==frequencies[i])
+                {
+                    listNotes.Add(item.Key);
+                    listNotesFrequencies.Add(item.Value);
+                    allnotes.Add(item.Key);
+                }
+            }
+
+            foreach (var item in notesSharp)
+            {
+                if (item.Value == frequencies[i])
+                {
+                    listNotesSharp.Add(item.Key);
+                    listNotesSharpFrequencies.Add(item.Value);
+                    allnotes.Add(item.Key);
+                }
+            }
+        }
+
+        Console.WriteLine($"Notes: {string.Join(" ",allnotes)}");
+        Console.WriteLine($"Naturals: {string.Join(", ", listNotes)}");
+        Console.WriteLine($"Sharps: {string.Join(", ", listNotesSharp)}");
+        Console.WriteLine($"Naturals sum: {listNotesFrequencies.Sum()}");
+        Console.WriteLine($"Sharps sum: {listNotesSharpFrequencies.Sum()}");
+
+
+
+    }
+
+    public static Dictionary<string, double> Notes()
+    {
+        var notes = new Dictionary<string, double>();
+        notes["C"] = 261.63;     
+        notes["D"] = 293.66;  
+        notes["E"] = 329.63;
+        notes["F"] = 349.23;   
+        notes["G"] = 392.00;
+        notes["A"] = 440.00;
+        notes["B"] = 493.88;
+        return notes;
+    }
+
+    public static Dictionary<string, double> NotesSharp()
+    {
+        var noteShapr = new Dictionary<string, double>();
+        
+        noteShapr["C#"] = 277.18;
+        noteShapr["D#"] = 311.13;      
+        noteShapr["F#"] = 369.99;     
+        noteShapr["G#"] = 415.30;  
+        noteShapr["A#"] = 466.16;
+    
+        return noteShapr;
+    }
+
+
+}
