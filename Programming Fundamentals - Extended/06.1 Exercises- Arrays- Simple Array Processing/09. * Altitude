@@ -1,0 +1,42 @@
+using System;
+
+public class Altitude
+{
+    public static void Main()
+    {
+        var plane = Console.ReadLine().Split(' ');
+        
+        var altitideOnAirplane = decimal.Parse(plane[0]);
+        var up = 0m;
+        var sumUp = 0m;
+
+        var down = 0m;
+        var sumDown = 0m;
+
+        for (int i = 1; i < plane.Length; i++)
+        {
+            if (plane[i]=="up")
+            {
+                up = int.Parse(plane[i + 1]);
+                sumUp = sumUp + up;
+            }
+            if (plane[i] == "down")
+            {
+                down = int.Parse(plane[i + 1]);
+                sumDown = sumDown + down;
+            }
+        }
+
+        var altitudeAirplane = altitideOnAirplane + sumUp;
+        var diff = altitudeAirplane - sumDown;
+
+        if (diff > 0)
+        {
+            Console.WriteLine("got through safely. current altitude: {0}m", diff);
+        }
+        else if(diff<=0)
+        {
+            Console.WriteLine("crashed");
+        }
+    }
+}
