@@ -1,0 +1,68 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class StuckZipper
+{
+    public static void Main()
+    {
+        var list1 = Console.ReadLine().Split().ToList().Select(int.Parse).ToList();
+        var list2 = Console.ReadLine().Split().ToList().Select(int.Parse).ToList();
+
+        var IdealAmountList1 = IdealAmountDigits(list1);
+        var IdealAmountList2 = IdealAmountDigits(list2);
+        var smallerAmountOfDigits = Math.Min(IdealAmountList1, IdealAmountList2);
+       
+        ideallist(list1, smallerAmountOfDigits);
+        ideallist(list2, smallerAmountOfDigits);
+
+        var index = 1;
+        for (int i = 0; i < list1.Count; i++)
+        {
+            list2.Insert(Math.Min(index,list2.Count), list1[i]);
+            index+=2;
+        }
+
+        Console.WriteLine(string.Join(" ",list2));
+
+    }
+
+    public static void ideallist(List<int> list,int smallerAmountOfDigits)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (DigitsCoun(list[i]) > smallerAmountOfDigits)
+            {
+                list.RemoveAt(i);
+                i--;
+            }
+        }    
+    }
+
+    public static int IdealAmountDigits(List<int> list)
+    {
+        var IdealNumbersOfDigits = int.MaxValue;
+        foreach (var item in list)
+        {
+            var DigitsCounter = DigitsCoun(item);
+            if (DigitsCounter < IdealNumbersOfDigits)
+            {
+                IdealNumbersOfDigits = DigitsCounter;
+            }
+        }
+
+        return IdealNumbersOfDigits;
+    }
+
+    public static int DigitsCoun(int item)
+    {
+        var counter = 0;
+        var number = Math.Abs(item);
+        while (number > 0)
+        {
+            number /= 10;
+            counter++;
+        }
+        return counter;
+    }
+}
