@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class SumAdjacentEqualNumbers
+{
+    public static void Main()
+    {
+        var number = Console.ReadLine().Split(' ').Select(double.Parse).ToList();
+        var sum = 0.0;
+
+        for (int i = 1; i < number.Count; i++)
+        {
+            var currentNumber = number[i - 1];
+            var nextNumber = number[i];
+
+            if (currentNumber == nextNumber)
+            {
+                sum = currentNumber + nextNumber;
+                number.Insert(i+1, sum);
+                number.RemoveAt(i-1);
+                number.RemoveAt(i-1);
+                i -= 2;
+                if (i < 0)
+                {
+                    i = 0;
+                }
+            }
+            
+        }
+
+        Console.WriteLine(string.Join(" ", number));        
+    }
+}
