@@ -1,0 +1,28 @@
+using System;
+
+public class CountOccurrencesOfLargerNumbersInArray
+{
+    public static void Main()
+    {
+        var numberAsString = Console.ReadLine().Split(' ');
+        var arrayNumbers = new double[numberAsString.Length];
+        var existsNumber = double.Parse(Console.ReadLine());
+
+        for (int i = 0; i < arrayNumbers.Length; i++)
+        {
+            arrayNumbers[i] = double.Parse(numberAsString[i]);
+        }
+
+        int counter = 0;
+
+        for (int i = 0; i < arrayNumbers.Length; i++)
+        {
+            if (arrayNumbers[i] > existsNumber)
+            {
+                counter++;
+            }
+        }
+
+        Console.WriteLine(counter);
+    }
+}
