@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class OrderedBankingSystem
+{
+    public static void Main()
+    {
+        var banks = new Dictionary<string, Dictionary<string, decimal>>();
+
+        var input = Console.ReadLine();
+
+        while (input!="end")
+        {
+            var info=input
+                .Split(new char[] {' ','-','>'}
+                ,StringSplitOptions.RemoveEmptyEntries);
+
+            var bank = info[0];
+            var account = info[1];
+            var balance = decimal.Parse(info[2]);
+
+            if (!banks.ContainsKey(bank))
+            {
+                banks[bank] = new Dictionary<string, decimal>();
+            }
+
+            if (!banks[bank].ContainsKey(account))
+            {
+                banks[bank][account] = 0;
+            }
+
+            banks[bank][account]+= balance;
+                
+            input = Console.ReadLine();
+        }
+        
+        foreach (var item in banks.OrderByDescending(x => x.Value.Sum(y => y.Value))
+                     .ThenByDescending(x => x.Value.Max(y => y.Value)))
+        {
+            foreach (var item2 in item.Value.OrderByDescending(x => x.Value))
+            {
+                
+                Console.WriteLine($"{item2.Key} -> {item2.Value} ({item.Key})");
+            }
+        }
+    }
+}
