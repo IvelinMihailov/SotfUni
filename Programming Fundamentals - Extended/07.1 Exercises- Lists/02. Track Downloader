@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class TrackDownloader
+{
+    public static void Main()
+    {
+        var blackListWords = Console.ReadLine().Split();
+        var line = Console.ReadLine();
+        var downloadedTraks = new List<string>();
+
+        while (line != "end")
+        {
+            bool blackWords = false;
+            foreach (var item in blackListWords)
+            {
+                if (line.Contains(item))
+                {
+                    blackWords = true;
+                    break;
+                }
+            }
+
+            if (!blackWords)
+            {
+                downloadedTraks.Add(line);
+            }
+
+            line = Console.ReadLine();
+        }
+
+        downloadedTraks.Sort();
+        Console.WriteLine(string.Join(Environment.NewLine,downloadedTraks));
+    }
+}
