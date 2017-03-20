@@ -1,0 +1,24 @@
+using System;
+using System.Linq;
+
+public class RandomizeWords
+{
+    public static void Main()
+    {
+        var words = Console.ReadLine().Split().ToList();
+        var random = new Random();
+
+        for (int word = 0; word < words.Count; word++)
+        {       
+            var randomWord = random.Next(0, words.Count);
+            var temporaly = words[word];
+            words[word] = words[randomWord];
+            words[randomWord] = temporaly;
+        }
+
+        foreach (var item in words)
+        {
+            Console.WriteLine(item);
+        }       
+    }
+}
