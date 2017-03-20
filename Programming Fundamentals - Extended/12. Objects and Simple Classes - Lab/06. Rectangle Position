@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+
+public class ClosestTwoPoints
+{
+    public static void Main()
+    {
+        int number =int.Parse(Console.ReadLine());
+
+        var listPoint = new List<Point>();
+
+        for (int i = 0; i < number; i++)
+        {
+            var currentPoint = ReadPointPosition();
+            listPoint.Add(currentPoint);
+        }
+
+        var minimunDistance = double.MaxValue;
+        Point resultFirstPoint = null;
+        Point resultSecondPoint = null;
+
+        for (int first = 0; first < listPoint.Count; first++)
+        {
+            for (int second = first+1; second < listPoint.Count; second++)
+            {
+                var fistPoint = listPoint[first];
+                var seconPoint = listPoint[second];
+
+                var distance = Distance(fistPoint, seconPoint);
+
+                if (distance< minimunDistance)
+                {
+                    minimunDistance = distance;
+                    resultFirstPoint = fistPoint;
+                    resultSecondPoint = seconPoint;
+                }
+            }
+        }
+
+        Console.WriteLine($"{minimunDistance}:f3");
+        Console.WriteLine(resultFirstPoint.Print());
+        Console.WriteLine(resultSecondPoint.Print());
+    }
+
+    public static double Distance(Point first,Point second)
+    {
+        var squareX = Math.Pow((first.X - second.X),2);
+        var squareY = Math.Pow((first.Y - second.Y), 2);
+        var result = Math.Sqrt(squareX + squareY);
+        return result;
+    }
+
+    public static Point ReadPointPosition()
+    {
+        var pointInfo = Console.ReadLine()
+                    .Split()
+                    .Select(double.Parse)
+                    .ToList();
+
+        return new Point
+        {
+            X = pointInfo[0],
+            Y = pointInfo[1]
+        };
+    }
+}
+
+public class Point
+{
+    public double X { get; set; }
+    public double Y { get; set; }
+
+    public string Print()
+    {
+        return $"({X}, {Y})";
+    }
+}
