@@ -1,0 +1,87 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Websites
+{
+    public class Site
+    {
+        public string Host { set; get; }
+
+        public string Domain { set; get; }
+
+        public List<string> Queries { set; get; }
+    }
+
+    public class Websites
+    {
+        public static void Main()
+        {
+            var input = Console.ReadLine();
+          
+            var websites = new List<Site>();
+
+            while (input !="end")
+            {
+                var splitInput = input.Split(new char[] { '|', ',', ' ' }
+           , StringSplitOptions.RemoveEmptyEntries);
+
+                if (splitInput.Length>2)
+                {
+                    var newSite = new Site()
+                    {
+                        Host = splitInput[0],
+                        Domain = splitInput[1],
+                        Queries = splitInput.Skip(2).ToList(),
+                    };
+
+                    websites.Add(newSite);
+                }
+                else
+                {
+                    var newSite = new Site()
+                    {
+                        Host = splitInput[0],
+                        Domain = splitInput[1],
+                        Queries = new List<string>(),
+                    };
+
+                    websites.Add(newSite);
+                }
+
+                input = Console.ReadLine();
+            }
+
+            foreach (var site in websites)
+            {
+                if (site.Queries.Count>0)
+                {
+                    Console.Write($"https://www.{site.Host}.{site.Domain}/query?=");
+
+                    var countQuery = 1;
+                    var querylenght = site.Queries.Count;
+
+                    foreach (var querie in site.Queries)
+                    {
+                        if (countQuery < querylenght)
+                        {
+                            Console.Write($"[{querie}]&");
+                        }
+                        else
+                        {
+                            Console.Write($"[{querie}]");
+                        }
+
+                        countQuery++;
+                    }
+                }
+                else if(site.Queries.Count == 0)
+                {
+                    Console.WriteLine($"https://www.{site.Host}.{site.Domain}");
+                }
+                     
+                Console.WriteLine();
+            }
+        }
+    }
+}
