@@ -1,0 +1,128 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Boxes
+{
+    public class UpperLeft
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+
+    public class UpperRight
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+
+    public class BottomLeft
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+
+    public class BottomRight
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+    }
+
+    public class BoxInfo
+    {
+        public List<int> Box { get; set; }
+
+        public int Perimeter { get; set; }
+
+        public int Area { get; set; }
+    }
+
+    public class Boxes
+    {
+        public static void Main()
+        {
+            var input = Console.ReadLine();
+
+            var boxs = new List<BoxInfo>();
+
+            while (input != "end")
+            {
+                var splitInput = input.Split(new char[] { ' ', '|', ':' }
+                , StringSplitOptions.RemoveEmptyEntries);
+                ///////////////////////////////////
+                var newUpperLeft = new UpperLeft()
+                {
+                    X = int.Parse(splitInput[0]),
+                    Y = int.Parse(splitInput[1]),
+                };
+
+                var newUpperRight = new UpperRight()
+                {
+                    X = int.Parse(splitInput[2]),
+                    Y = int.Parse(splitInput[3]),
+                };
+
+                var newBottomLeft = new BottomLeft()
+                {
+                    X = int.Parse(splitInput[4]),
+                    Y = int.Parse(splitInput[5]),
+                };
+
+                var newBottomRight = new BottomRight()
+                {
+                    X = int.Parse(splitInput[6]),
+                    Y = int.Parse(splitInput[7]),
+                };
+                /////////////////////////////////////
+                var width = Width(newUpperLeft, newUpperRight);
+                var height = Height(newUpperLeft, newBottomLeft);
+
+                var newBox = new BoxInfo
+                {
+                    Box = new List<int>(),
+                    Perimeter = CalculatePerimeter(width, height),
+                    Area = CalculateArea(width, height),
+                };
+                newBox.Box.Add(width);
+                newBox.Box.Add(height);
+                boxs.Add(newBox);
+
+                input = Console.ReadLine();
+            }
+
+            foreach (var box in boxs)
+            {
+                Console.WriteLine($"Box: {string.Join(", ",box.Box)}");
+                Console.WriteLine($"Perimeter: {box.Perimeter}");
+                Console.WriteLine($"Area: {box.Area}");
+            }
+
+        }
+
+        public static int Width(UpperLeft first, UpperRight second)
+        {
+            var squareX = Math.Pow((first.X - second.X), 2);
+            var squareY = Math.Pow((first.Y - second.Y), 2);
+            var result = Math.Sqrt(squareX + squareY);
+            return (int)result;
+        }
+
+        public static int Height(UpperLeft first, BottomLeft second)
+        {
+            var squareX = Math.Pow((first.X - second.X), 2);
+            var squareY = Math.Pow((first.Y - second.Y), 2);
+            var result = Math.Sqrt(squareX + squareY);
+            return (int)result;
+        }
+
+        public static int CalculatePerimeter(int width, int height)
+        {
+            return 2 * width + 2 * height;
+        }
+
+        public static int CalculateArea(int width, int height)
+        {
+            return width * height;
+        }
+    }
+}
