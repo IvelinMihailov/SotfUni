@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace JSONstringify
+{
+    public class Student
+    {
+        public string Name { set; get; }
+
+        public int Age { set; get; }
+
+        public int[] Greads { set; get; }
+    }
+
+    public class JSONstringify
+    {
+        public static void Main()
+        {
+            var line = Console.ReadLine();
+
+            var ListStudents = new List<Student>();
+            while (line != "stringify")
+            {
+                var tokens = line.Split(new char[] { ':', '-', '>', ' ', ',' }
+                , StringSplitOptions.RemoveEmptyEntries);
+
+                var name = tokens[0];
+                var age = int.Parse(tokens[1]);
+                var grades = tokens.Skip(2).Select(int.Parse).ToArray();
+
+                var student = new Student
+                {
+                    Name = name,
+                    Age = age,
+                    Greads = grades
+                };
+
+                ListStudents.Add(student);
+
+                line = Console.ReadLine();
+            }
+
+            var output = "";
+            output += "[";
+            var counter = 1;
+            var lenght = ListStudents.Count;
+
+            foreach (var student in ListStudents)
+            {
+                output += "{";
+                output += $"name:\"{student.Name}\",age:{student.Age},grades:[{string.Join(", ", student.Greads)}]";
+                output += "}";
+
+                if (counter < lenght)
+                {
+                    output += ",";
+                }
+
+                counter++;
+            }
+            output += "]";
+
+            Console.WriteLine(output);
+        }
+    }
+}
