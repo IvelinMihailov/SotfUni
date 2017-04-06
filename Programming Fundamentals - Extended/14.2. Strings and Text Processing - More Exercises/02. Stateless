@@ -1,0 +1,47 @@
+using System;
+
+namespace Stateless
+{
+    public class Stateless
+    {
+        public static void Main()
+        {
+            while (true)
+            {
+                var states = Console.ReadLine();
+                if (states == "collapse")
+                {
+                    break;
+                }
+
+                var fiction = Console.ReadLine();
+                while (fiction.Length != 0)
+                {
+                    var index = states.IndexOf(fiction);
+                    while (index != -1)
+                    {
+                        index = states.IndexOf(fiction);
+                        states = states.Remove(index, fiction.Length).Trim();
+                        index = states.IndexOf(fiction);
+                    }
+
+                    if (fiction.Length == 1)
+                    {
+                        break;
+                    }
+
+                    fiction = fiction.Substring(1, fiction.Length - 2);
+                }
+            
+                if (states.Length == 0)
+                {
+                    Console.WriteLine("(void)");
+                }
+                else
+                {
+                    Console.WriteLine(states);
+                }
+            }  
+        }
+    }
+}
