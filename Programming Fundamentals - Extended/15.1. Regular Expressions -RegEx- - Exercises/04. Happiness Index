@@ -1,0 +1,50 @@
+using System;
+using System.Text.RegularExpressions;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace HappinessIndex
+{
+    public class HappinessIndex
+    {
+        public static void Main()
+        {
+            var emoticouc = Console.ReadLine();
+
+            var happyEmoticons = @"(\:\)|\:D|\;\)|:\*|:]|;\]|:}|;}|\(:|\*:|c:|\[:|\[;)";
+            var sadEmoticons = @"(:\(|D:|;\(|:\[|;\[|:{|;{|\):|:c|\]:|\];)";
+            var happy = new Regex(happyEmoticons);
+            var sad = new Regex(sadEmoticons);
+
+            var happyMatches = happy.Matches(emoticouc);
+            var countHappy = happyMatches.Count;
+
+            var sadMatches = sad.Matches(emoticouc);
+            var countSad = sadMatches.Count;
+
+            decimal happyIndex = (decimal)countHappy / (decimal)countSad;
+
+            var print = "";
+
+            if (happyIndex<1)
+            {
+                print = ":(";
+            }
+            else if (happyIndex==1)
+            {
+                print = ":|";
+            }
+            else if (happyIndex>1 && happyIndex < 2)
+            {
+                print = ":)";
+            }
+            else if (happyIndex>=2)
+            {
+                print = ":D";
+            }
+            
+            Console.WriteLine($"Happiness index: {happyIndex:f2} {print}");
+            Console.WriteLine($"[Happy count: {countHappy}, Sad count: {countSad}]");
+        }
+    }
+}
