@@ -1,0 +1,67 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+namespace PopulationAggregation
+{
+    class PopulationAggregation
+    {
+        static void Main()
+        {
+            var input = Console.ReadLine();
+
+            var countryInfo = new Dictionary<string, int>();
+            var cityInfo = new Dictionary<string, long>();
+
+            var upLetter = new List<char>();
+            for (char i = 'A'; i <= 'Z'; i++)
+            {
+                upLetter.Add(i);
+            }
+
+            while (input != "stop")
+            {
+                var tokens = input.Split('\\');
+                var population = long.Parse(tokens[2]);
+
+                for (int i = 0; i < tokens.Length - 1; i++)
+                {
+                    var prohibitedSymbols = @"[0-9@#$&\\]";
+                    var currect = new Regex(prohibitedSymbols);
+                    var result = currect.Replace(tokens[i], "");
+
+                    if (upLetter.Contains(tokens[i].First()))
+                    {
+                        if (!countryInfo.ContainsKey(result))
+                        {
+                            countryInfo[result] = 0;
+                        }
+                        countryInfo[result]++;
+                    }
+                    else
+                    {
+                        if (!cityInfo.ContainsKey(result))
+                        {
+                            cityInfo[result] = population;
+                        }
+                    }
+                }
+
+                input = Console.ReadLine();
+            }
+
+            foreach (var item in countryInfo.OrderBy(x => x.Key))
+            {
+                Console.WriteLine($"{item.Key} -> {item.Value}");
+            }
+
+            foreach (var item in cityInfo.OrderByDescending(x => x.Value).Take(3))
+            {
+                Console.WriteLine($"{item.Key} -> {item.Value}");
+            }
+        }
+    }
+}
