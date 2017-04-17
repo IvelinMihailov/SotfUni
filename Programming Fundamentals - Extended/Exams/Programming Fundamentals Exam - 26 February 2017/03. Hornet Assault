@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace HornetAssault
+{
+    class HornetAssault
+    {
+        static void Main()
+        {         
+            var beehives = Console.ReadLine().Split(' ').Select(long.Parse).ToArray();   
+            var  hornets = Console.ReadLine().Split(' ').Select(long.Parse).ToList();
+
+            for (int i = 0; i < beehives.Length; i++)
+            {
+                if (hornets.Count == 0)
+                {
+                    break;
+                }
+
+                long beehiveCount = beehives[i];
+                long hornetPower = SumHornetsPower(hornets); 
+     
+                beehives[i] -= hornetPower;
+
+                if (beehiveCount >= hornetPower)
+                {
+                    hornets.RemoveAt(0);
+                }
+            }
+
+            PrintWinningSide(beehives, hornets);
+        }
+
+        public static long SumHornetsPower(List<long> hornets)
+        {
+            long sum = 0L;
+            foreach (var hornet in hornets)
+            {
+                sum += hornet;
+            }
+
+            return sum;
+        }
+
+        public static void PrintWinningSide(long[] beehives, List<long> hornets)
+        {
+       
+           var aliveBeehives = new List<long>();
+
+            foreach (var beehive in beehives)
+            {
+                if (beehive > 0)
+                {
+                    aliveBeehives.Add(beehive);
+                }
+            }
+
+            if (aliveBeehives.Count > 0)
+            {
+                Console.WriteLine(string.Join(" ", aliveBeehives));
+            }
+            else
+            {
+                Console.WriteLine(string.Join(" ", hornets));
+            }
+        }
+    }
+}
