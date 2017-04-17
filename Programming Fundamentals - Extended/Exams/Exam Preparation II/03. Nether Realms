@@ -1,0 +1,103 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Text;
+
+namespace Ladybugs
+{
+    class Demon
+    {
+        public string Name { set; get; }
+
+        public decimal Health { set; get; }
+
+        public decimal Demage { set; get; }
+    }
+
+    class Ladybugs
+    {
+        static void Main()
+        {
+            var word = Console.ReadLine().Split(new char[] { ',', ' ' }
+            , StringSplitOptions.RemoveEmptyEntries);
+
+            var listDemons = new List<Demon>();
+            for (int i = 0; i < word.Length; i++)
+            {
+
+                var digit = @"-?\d+\.?\d*";
+
+                var damegeOnDemon = DamegeOnDemon(word[i], digit);
+                var healthOnDemon = HealthOnDemon(word[i]);
+
+                var demon = new Demon()
+                {
+                    Demage = damegeOnDemon,
+                    Health = healthOnDemon,
+                    Name = word[i],
+                };
+
+                listDemons.Add(demon);
+            }
+
+            foreach (var demon in listDemons.OrderBy(x => x.Name))
+            {
+                Console.WriteLine($"{demon.Name} - {demon.Health} health, {demon.Demage:f2} damage ");
+            }
+
+        }
+
+        public static decimal HealthOnDemon(string word)
+        {
+            var withOutSymbol = word.Where(x => !char.IsDigit(x)
+            && x != '-'
+             && x != '+'
+              && x != '/'
+               && x != '*'
+                && x != '.');
+            var sumLetter = 0m;
+
+            foreach (var item in withOutSymbol)
+            {
+                sumLetter = sumLetter + (decimal)item;
+            }
+
+            return sumLetter;
+        }
+
+        public static decimal DamegeOnDemon(string word, string matchDigit)
+        {
+            var regex = new Regex(matchDigit);
+
+            var matchesDigit = regex.Matches(word);
+
+            var sumDigit = 0m;
+
+            foreach (Match digit in matchesDigit)
+            {
+                var digitString = digit.ToString();
+                sumDigit = sumDigit + decimal.Parse(digitString);
+            }
+
+            for (int i = 0; i < word.Length; i++)
+            {
+                var currentIndex = word[i].ToString();
+
+                if (currentIndex == "*")
+                {
+                    sumDigit = sumDigit * 2;
+                }
+
+                if (currentIndex == "/")
+                {
+                    sumDigit = sumDigit / (decimal)2;
+                }
+            }
+
+            return sumDigit;
+        }
+    }
+}
