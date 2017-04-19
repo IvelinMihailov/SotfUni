@@ -1,0 +1,57 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
+
+namespace CommandInterpreter
+{
+    class CommandInterpreter
+    {
+        static void Main()
+        {
+            var input = Console.ReadLine();
+            var pattern = @"(\D+)(\d+)";
+            var regex = new Regex(pattern);
+            var matches = regex.Matches(input);
+            var sb = new StringBuilder();
+
+            foreach (Match matche in matches)
+            {
+                var stringSpam = matche.Groups[1].Value;
+                var reapeatStringSpam = int.Parse(matche.Groups[2].Value);
+                string upStringSpam = "";
+                upStringSpam = UpAllLetter(stringSpam, upStringSpam);
+                for (int i = 0; i < reapeatStringSpam; i++)
+                {
+                    sb.Append(upStringSpam);
+                }
+            }
+
+            var result = sb.ToString();
+            Console.WriteLine($"Unique symbols used: {result.Distinct().Count()}");
+            Console.WriteLine(result);
+
+        }
+
+        public static string UpAllLetter(string stringSpam, string upStringSpam)
+        {
+            foreach (char currentChar in stringSpam)
+            {
+                if (currentChar >= 97 && currentChar <= 122)
+                {
+                    upStringSpam += (char)(currentChar - 32);
+                }
+                else
+                {
+                    upStringSpam += currentChar;
+                }
+            }
+
+            return upStringSpam;
+        }
+    }
+}
+
