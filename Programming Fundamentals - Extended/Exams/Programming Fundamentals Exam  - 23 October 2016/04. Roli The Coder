@@ -1,0 +1,102 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Text;
+
+namespace RoliTheCoder
+{
+    class Event
+    {
+        public int Id { set; get; }
+
+        public string Name { set; get; }
+
+        public List<string> Participants { set; get; }
+
+    }
+
+    class RoliTheCoder
+    {
+        static void Main()
+        {
+            var dictionary = new Dictionary<int, Event>();
+
+            while (true)
+            {
+                var currentLine = Console.ReadLine();
+                if (currentLine == "Time for Code")
+                {
+                    break;
+                }
+
+                var lineParts = currentLine.Split(new char[] { ' ' }
+                , StringSplitOptions.RemoveEmptyEntries);
+
+                var eventId = 0;
+
+                if (!int.TryParse(lineParts[0], out eventId))
+                {
+                    continue;
+                }
+
+                string eventName = null;
+
+                if (lineParts.Length > 0 && lineParts[1].StartsWith("#"))
+                {
+                    eventName = lineParts[1].Trim('#');
+                }
+                else
+                {
+                    continue;
+                }
+
+                var participants = new List<string>();
+
+                if (lineParts.Length > 2)
+                {
+                    participants = lineParts.Skip(2).ToList();
+                    if (!participants.All(p => p.StartsWith("@")))
+                    {
+                        continue;
+                    }
+                }
+
+                var newEvent = new Event
+                {
+                    Id = eventId,
+                    Name = eventName,
+                    Participants = participants,
+                };
+
+                if (!dictionary.ContainsKey(eventId))
+                {
+                    dictionary[eventId] = newEvent;
+                }
+                else
+                {
+                    if (dictionary[eventId].Name == eventName)
+                    {
+                        dictionary[eventId].Participants.AddRange(participants);
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+
+            foreach (var item in dictionary.OrderByDescending(x => x.Value.Participants.Distinct().Count())
+                .ThenBy(x => x.Value.Name))
+            {
+                Console.WriteLine($"{item.Value.Name} - {item.Value.Participants.Distinct().Count()}");
+                foreach (var item2 in item.Value.Participants.OrderBy(x => x).Distinct())
+                {
+                    Console.WriteLine($"{item2}");
+                }
+            }
+        }
+    }
+}
