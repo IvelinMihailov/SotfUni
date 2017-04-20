@@ -1,0 +1,96 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+namespace Ladybugs
+{
+    class Ladybugs
+    {
+        static void Main()
+        {
+            var lenght = int.Parse(Console.ReadLine());
+            var array = new int[lenght];
+            var ladyBugIndexs = Console.ReadLine().Split().Select(int.Parse)
+                .Where(x=>x>=0 && x<= array.Length-1)
+                .ToArray();
+
+
+            var ladyBug = new int[lenght];
+
+            for (int i = 0; i < ladyBugIndexs.Length; i++)
+            {
+                var currentladyBugIndexs = ladyBugIndexs[i];
+                ladyBug[currentladyBugIndexs] = 1;
+            }
+
+            var line = Console.ReadLine();
+
+            while (line !="end")
+            {
+                var tokens = line.Split();
+                var ladyBugIndex = int.Parse(tokens[0]);
+                var direction = tokens[1];
+                var flyLenght = int.Parse(tokens[2]);
+
+                if (ladyBugIndex<0 || ladyBugIndex >= ladyBug.Length)
+                {
+                    line = Console.ReadLine();
+                    continue;
+                }
+
+                if (ladyBug[ladyBugIndex]==0)
+                {
+                    line = Console.ReadLine();
+                    continue;
+                }
+
+                MoveladyBug(ladyBug, ladyBugIndex, flyLenght,direction);
+
+                line = Console.ReadLine();
+            }
+
+            Console.WriteLine(string.Join(" ",ladyBug));
+        }
+
+        public static void MoveladyBug(int[] ladyBug, int ladyBugIndex, int flyLenght, string direction)
+        {
+            ladyBug[ladyBugIndex] = 0;
+
+            var outMove = false;
+
+            while (!outMove)
+            {
+                switch (direction)
+                {
+                    case "left":
+                        ladyBugIndex -= flyLenght;
+                        break;
+                    case "right":
+                        ladyBugIndex += flyLenght;
+                        break;
+                }
+
+                if (ladyBugIndex < 0 || ladyBugIndex >= ladyBug.Length)
+                {
+                    outMove = true;
+                    continue;
+                }
+
+                if (ladyBug[ladyBugIndex] == 1)
+                {
+                    continue;
+                }
+
+                if (ladyBug[ladyBugIndex] == 0)
+                {
+                    ladyBug[ladyBugIndex] = 1;
+                    outMove = true;
+                    continue;
+                }
+            }
+        }
+    }
+}
