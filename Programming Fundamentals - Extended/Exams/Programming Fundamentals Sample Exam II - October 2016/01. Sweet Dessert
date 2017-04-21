@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Text;
+
+namespace SweetDessert
+{
+    class SweetDessert
+    {
+        static void Main()
+        {
+            var amountCash = decimal.Parse(Console.ReadLine());
+            var numberOfGuests = decimal.Parse(Console.ReadLine());
+            var priceBanana = decimal.Parse(Console.ReadLine());
+            var priceEggs = decimal.Parse(Console.ReadLine());
+            var priceBarries = decimal.Parse(Console.ReadLine());
+
+            var sixDesserts = (2 * priceBanana) + (4 * priceEggs) + (0.2m * priceBarries);
+            int count = (int)Math.Ceiling(numberOfGuests / 6.0m);
+
+            var allMoney = count * sixDesserts;
+
+            if (allMoney <= amountCash)
+            {
+                Console.WriteLine($"Ivancho has enough money - it would cost {allMoney:f2}lv.");
+            }
+            else
+            {
+                Console.WriteLine($"Ivancho will have to withdraw money - he will need {allMoney- amountCash:f2}lv more.");
+            }
+        }  
+    }
+}
