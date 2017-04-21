@@ -1,0 +1,92 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Text;
+
+namespace FootballStandings
+{
+    class FootballStandings
+    {
+        static void Main()
+        {
+            var delimer = Console.ReadLine();
+            var teamName = Console.ReadLine();
+
+            var scores = new Dictionary<string, decimal>();
+            var goals = new Dictionary<string, decimal>();
+
+            while (teamName != "final")
+            {
+                var keys = Regex.Escape(delimer);
+                var regex = new Regex($@"{keys}(.*?){keys}.*?{keys}(.*?){keys}.*?(\d+):(\d+)");
+                var match = regex.Match(teamName);
+
+                var firstTeam = string.Join("", match.Groups[1].Value.ToUpper().Reverse());
+                var secondTeam = string.Join("", match.Groups[2].Value.ToUpper().Reverse());
+                var resultFirstTeam = decimal.Parse(match.Groups[3].Value);
+                var resultSecondTeam = decimal.Parse(match.Groups[4].Value);
+
+                if (!scores.ContainsKey(firstTeam))
+                {
+                    scores[firstTeam] = 0;
+                }
+
+                if (!scores.ContainsKey(secondTeam))
+                {
+                    scores[secondTeam] = 0;
+                }
+
+                if (!goals.ContainsKey(firstTeam))
+                {
+                    goals[firstTeam] = 0;
+                }
+
+                if (!goals.ContainsKey(secondTeam))
+                {
+                    goals[secondTeam] = 0;
+                }
+
+                //add scores
+                if (resultFirstTeam > resultSecondTeam)
+                {
+                    scores[firstTeam] += 3;
+                }
+                else if (resultFirstTeam < resultSecondTeam)
+                {
+                    scores[secondTeam] += 3;
+                }
+                else
+                {
+                    scores[firstTeam]++;
+                    scores[secondTeam]++;
+                }
+
+                //add goals
+                goals[firstTeam] += resultFirstTeam;
+                goals[secondTeam] += resultSecondTeam;
+
+                teamName = Console.ReadLine();
+            }
+
+            var countCountry = 1;
+            Console.WriteLine("League standings:");
+            foreach (var item in scores.OrderByDescending(x => x.Value).ThenBy(x => x.Key))
+            {
+                Console.WriteLine($"{countCountry}. {item.Key} {item.Value}");
+                countCountry++;
+            }
+
+            Console.WriteLine("Top 3 scored goals:");
+            foreach (var item in goals
+                .OrderByDescending(x => x.Value)
+                .ThenBy(x => x.Key)
+                .Take(3))
+            {
+                Console.WriteLine($"- {item.Key} -> {item.Value}");
+            }
+        }
+    }
+}
