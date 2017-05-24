@@ -1,0 +1,11 @@
+function solve(number) {
+
+    let printNumber = Number(number);
+    let result = "";
+
+    for (let i = 1; i <= printNumber; i++){
+        result+=i;
+    }
+
+    console.log(result)
+}
