@@ -1,0 +1,6 @@
+function solve(binaryNumber) {
+    let binary = binaryNumber;
+    let digit = parseInt(binary, 2);
+
+    console.log(digit);
+}
