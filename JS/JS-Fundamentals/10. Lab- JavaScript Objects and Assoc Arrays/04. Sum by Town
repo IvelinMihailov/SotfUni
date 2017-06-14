@@ -1,0 +1,14 @@
+function solve(array) {
+    let townPop = {};
+    for (let i = 0; i < array.length; i+=2) {
+         let town = array[i];
+         let population = Number(array[i+1]);
+
+         if(!townPop.hasOwnProperty(town)){
+             townPop[town] = 0
+         }
+         townPop[town] += population;
+    }
+
+    console.log(JSON.stringify(townPop));
+}
