@@ -1,0 +1,18 @@
+function solve(array) {
+
+    let hmtl = '<table>\n';
+    hmtl += '  <tr><th>name</th><th>score</th></tr>\n';
+    let arr = JSON.parse(array);
+    for (let element of arr) {
+        hmtl += `  <tr><td>${htmlEscape(element['name'])}</td><td>${element['score']}</td></tr>\n`;
+    }
+    hmtl += '</table>';
+
+    console.log(hmtl);
+
+    function htmlEscape(text) {
+        let map = { '"': '&quot;', '&': '&amp;',
+            "'": '&#39;', '<': '&lt;', '>': '&gt;' };
+        return text.replace(/[\"&'<>]/g, ch => map[ch]);
+    }
+}
