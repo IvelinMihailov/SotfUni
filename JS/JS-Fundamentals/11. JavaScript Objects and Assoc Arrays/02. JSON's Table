@@ -1,0 +1,20 @@
+function solve(array) {
+
+    let table = '<table>\n';
+
+    for (let i = 0; i < array.length; i++) {
+        let currentJSON = array[i];
+        let parseJSONtoObj = JSON.parse(currentJSON);
+        let name = parseJSONtoObj['name'];
+        let position = parseJSONtoObj['position'];
+        let salary = Number(parseJSONtoObj['salary']);
+        table += '    <tr>\n';
+        table += `        <td>${name}</td>\n`;
+        table += `        <td>${position}</td>\n`;
+        table += `        <td>${salary}</td>\n`;
+        table += '   <tr>\n';
+    }
+
+    table += '</table>'
+    console.log(table);
+}
