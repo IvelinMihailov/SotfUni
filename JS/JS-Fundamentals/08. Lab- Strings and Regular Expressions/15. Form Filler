@@ -1,0 +1,14 @@
+function solve(username , email , phone , data) {
+    data.forEach(line => {
+        line = line.replace(/<([!@+])[a-zA-Z]+([!@+])>/g, repl);
+        console.log(line);
+    });
+
+    function repl(match ,group) {
+        switch (group){
+            case "!": return username;
+            case "@": return email;
+            case "+": return phone;
+        }
+    }
+}
