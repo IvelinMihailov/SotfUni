@@ -1,0 +1,15 @@
+function solve(text) {
+
+    let splitText = text[0].split(/\W+/).filter(e => e != '');
+    let countrerWord = {};
+
+    for (let word of splitText){
+        if(!countrerWord.hasOwnProperty(word)){
+            countrerWord[word] = 0;
+        }
+        countrerWord[word] += 1;
+    }
+
+    console.log(JSON.stringify(countrerWord));
+
+}
