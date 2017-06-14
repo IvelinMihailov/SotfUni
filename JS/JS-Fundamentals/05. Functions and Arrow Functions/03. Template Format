@@ -1,0 +1,13 @@
+function solve(array) {
+
+    let result = '<?xml version="1.0" encoding="UTF-8"?>\n';
+    result += '<quiz>\n';
+
+    for (let i = 0; i < array.length; i+=2) {
+        result += `  <question>\n    ${array[i]}\n  </question>\n`;
+        result += `  <answer>\n    ${array[i+1]}\n  </answer>\n`;
+    }
+    result += '</quiz>';
+    
+    console.log(result);
+}
