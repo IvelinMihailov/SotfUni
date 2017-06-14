@@ -1,0 +1,29 @@
+function solve(n){
+
+    let sequence = 'ATCGTTAGGG';
+    let seqLenght = sequence.length;
+
+    let indexFirstEle = 0;
+    let indexSecondEle = 1;
+
+    for (let i = 1; i <=n; i++) {
+        if(indexFirstEle >= seqLenght){
+            indexFirstEle = 0;
+        }
+
+        if(indexSecondEle >= seqLenght){
+            indexSecondEle = 1;
+        }
+
+        if(i % 4 === 1){
+            console.log(`**${sequence.charAt(indexFirstEle)}${sequence.charAt(indexSecondEle)}**`)
+        }else if (i % 4 === 2 || i % 4 === 0){
+            console.log(`*${sequence.charAt(indexFirstEle)}--${sequence.charAt(indexSecondEle)}*`)
+        }else {
+            console.log(`${sequence.charAt(indexFirstEle)}----${sequence.charAt(indexSecondEle)}`)
+        }
+
+        indexFirstEle+=2;
+        indexSecondEle+=2;
+    }
+}
