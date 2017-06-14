@@ -1,0 +1,5 @@
+function solve(array) {
+   let indexPrint = array.pop();
+   array = array.filter((e,i) => i % indexPrint == 0).join('\n');
+   console.log(array);
+}
