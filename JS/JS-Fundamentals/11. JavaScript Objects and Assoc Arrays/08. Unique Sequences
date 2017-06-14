@@ -1,0 +1,18 @@
+function solve(input) {
+    let result = new Map();
+
+    for (let elemtnet of input){
+        let currentSequence = JSON.parse(elemtnet);
+        currentSequence = currentSequence.map(Number).sort((a,b) => b-a);
+        let currentSum = currentSequence.reduce((a,b) => a+b);
+
+        if(!result.has(currentSum)){
+            result.set(currentSum,currentSequence)
+        }
+    }
+
+    let sortResult = [...result].sort((a,b) => a[1].length > b[1].length);
+    for (let [sum,arr] of sortResult){
+        console.log(`[${arr.join(', ')}]`);
+    }
+}
