@@ -1,0 +1,22 @@
+function solve(array) {
+    array.shift();
+    let towns = [];
+    let objTown = {};
+
+    for (let element of array){
+        let [town ,latitude ,longitude ] = element.split('|')
+            .map(e => e.trim())
+            .filter(e => e != '');
+        ;
+
+        objTown = {
+            Town: town,
+            Latitude: Number(latitude),
+            Longitude: Number(longitude)
+        };
+
+        towns.push(objTown);
+    }
+
+    console.log(JSON.stringify(towns));
+}
