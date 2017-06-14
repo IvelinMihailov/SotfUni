@@ -1,0 +1,21 @@
+function solve(array) {
+    let result = [];
+    let counter = 1;
+    for (let i = 0; i < array.length; i++) {
+        let currentComand = array[i];
+
+        if(currentComand == 'add'){
+            result.push(counter);
+        }
+        if(currentComand == 'remove'){
+            result.pop();
+        }
+        counter++;
+    }
+
+    if(result.length === 0){
+        console.log('Empty')
+    }else {
+        console.log(result.join('\n'));
+    }
+}
