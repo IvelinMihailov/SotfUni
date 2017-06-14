@@ -1,0 +1,14 @@
+function solve(text) {
+    text = text.join('').toLowerCase();
+    let result = new Set();
+    let patter = /\w+/g;
+
+    let match = text.match(patter);
+
+    for (let i = 0; i < match.length; i++) {
+        let currentElemt = match[i];
+        result.add(currentElemt);
+    }
+
+    console.log([...result.values()].join(", "));
+}
