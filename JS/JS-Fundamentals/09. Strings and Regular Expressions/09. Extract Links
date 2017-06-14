@@ -1,0 +1,15 @@
+function solve(input) {
+
+   let pattern = /www\.[A-Za-z0-9\-]+(\.[a-z]+)+/g;
+   let text = input.join('\n');
+   let matchesLinks = [];
+
+   let matches =  pattern.exec(text);
+
+   while (matches){
+       matchesLinks.push(matches[0]);
+       matches =  pattern.exec(text);
+   }
+
+   console.log(matchesLinks.join('\n'));
+}
