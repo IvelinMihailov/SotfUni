@@ -1,0 +1,18 @@
+function solve(number) {
+    let numberAsString = number.toString();
+    function average(numberAsString) {
+        let sum = 0;
+        for (let i = 0; i < numberAsString.length; i++) {
+            sum+=Number(numberAsString[i]);
+        }
+        let average = sum / numberAsString.length;
+        return average;
+    }
+    
+    while (average(numberAsString)<=5){
+        numberAsString+="9";
+        average(numberAsString);
+    }
+
+    console.log(numberAsString);
+}
