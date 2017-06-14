@@ -1,4 +1,4 @@
-function calculate(a, b, op) {
+function solve(a, b, op) {
 
     let calc = function(a, b, op) {
         return op(a, b) 
