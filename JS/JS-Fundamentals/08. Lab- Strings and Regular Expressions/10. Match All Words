@@ -1,0 +1,6 @@
+function solve(text) {
+    text=text.toString()
+    let pattern = /\w+/g;
+    let result = text.match(pattern).join('|');
+    console.log(result);
+}
