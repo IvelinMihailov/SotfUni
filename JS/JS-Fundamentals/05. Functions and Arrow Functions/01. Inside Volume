@@ -1,0 +1,28 @@
+function solve(array) {
+    let x = 50, x2 = 10;
+    let y = 80, y2 = 20;
+    let z = 50, z2 = 15;
+
+    for (let i = 0; i < array.length; i+=3)
+    {
+        let enteredX = array[i];
+        let enteredY = array[i+1];
+        let enteredZ = array[i+2];
+
+        function isInSide() {
+            if ((enteredX <= x && enteredX >= x2)
+                && (enteredY <= y && enteredY >= x2)
+                && (enteredZ <= z && enteredZ >= x2)){
+                return true;
+            }else {
+                return false;
+            }
+        }
+
+        if(isInSide()){
+            console.log('inside');
+        }else {
+            console.log('outside');
+        }
+    }
+}
