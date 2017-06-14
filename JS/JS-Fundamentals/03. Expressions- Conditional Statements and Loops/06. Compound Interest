@@ -1,0 +1,12 @@
+function solve(array) {
+
+    let principalSum = array[0];
+    let interestRate = array[1];
+    let compoundingFrequency = 12/array[2];
+    let time = array[3];
+
+    interestRate/=100;
+
+    let result = principalSum * Math.pow((1+(interestRate/compoundingFrequency)), compoundingFrequency*time);
+    console.log(result.toFixed(2));
+}
