@@ -1,0 +1,11 @@
+function solve(number) {
+
+    let remainder = number % 12;
+    let times = Math.floor(number/12);
+
+    if(remainder === 0){
+        console.log(`${times}'-${remainder}"`);
+    }else {
+        console.log(`${times}'-${remainder}"`);
+    }
+}
