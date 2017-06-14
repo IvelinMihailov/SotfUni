@@ -1,0 +1,9 @@
+function solve(text, substring) {
+    text = text.split(' ');
+
+    if(text[text.length-1] === substring){
+        console.log('true');
+    }else {
+        console.log('false');
+    }
+}
