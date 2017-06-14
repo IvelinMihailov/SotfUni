@@ -1,0 +1,22 @@
+function solve(text) {
+
+    text = text.split(' ');
+    let result = [];
+
+    for (let j = 0; j < text.length; j++) {
+        let currentWord = text[j];
+        currentWord = currentWord.split('');
+
+        for (let i = 0; i < currentWord.length; i++) {
+            if(i == 0){
+                currentWord[i] = currentWord[i].toUpperCase();
+            }else {
+                currentWord[i] = currentWord[i].toLowerCase();
+            }
+        }
+        currentWord = currentWord.join('');
+        result.push(currentWord);
+    }
+    
+    console.log(result.join(' '));
+}
