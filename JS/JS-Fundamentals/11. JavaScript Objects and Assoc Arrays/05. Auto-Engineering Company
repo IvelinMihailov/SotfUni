@@ -1,0 +1,27 @@
+function solve(array) {
+    let result = new Map();
+
+    for (let i = 0; i < array.length; i++) {
+        let tokens = array[i].split(' | ');
+        let carBrand = tokens[0];
+        let carModel = tokens[1];
+        let producedCars = Number(tokens[2]);
+
+        if(!result.has(carBrand)){
+            result.set(carBrand, new Map());
+        }
+
+        if(!result.get(carBrand).has(carModel)){
+            result.get(carBrand).set(carModel , 0);
+        }
+        let currentProduce = result.get(carBrand).get(carModel);
+        result.get(carBrand).set(carModel , currentProduce + producedCars);
+    }
+
+    for (let [brand , carInfo] of result){
+        console.log(`${brand}`);
+        for (let [carModel, producedCars] of carInfo){
+            console.log(`###${carModel} -> ${producedCars}`);
+        }
+    }
+}
