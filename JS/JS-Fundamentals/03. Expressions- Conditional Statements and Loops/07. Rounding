@@ -1,0 +1,5 @@
+function solve(array) {
+    let [num,precision] = array;
+    let divisor = Math.pow(10, precision);
+    console.log(Math.round(num*divisor) / divisor);
+}
