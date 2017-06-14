@@ -1,0 +1,26 @@
+function solve(array) {
+
+    let result = new Map();
+    let countBottles = new Map();
+
+    for (let i = 0; i < array.length; i++) {
+        let tokens = array[i].split(' => ');
+        let juiceName = tokens[0];
+        let quantity = Number(tokens[1]);
+
+        if(!result.has(juiceName)){
+            result.set(juiceName, 0);
+        }
+        result.set(juiceName,result.get(juiceName) + quantity)
+        let currentQuantity = result.get(juiceName);
+
+        if(currentQuantity >= 1000){
+            let bottles = Math.floor(currentQuantity/1000);
+            countBottles.set(juiceName,bottles)
+        }
+    }
+
+    for (let [juice, quantity] of countBottles){
+        console.log(`${juice} => ${quantity}`)
+    }
+}
