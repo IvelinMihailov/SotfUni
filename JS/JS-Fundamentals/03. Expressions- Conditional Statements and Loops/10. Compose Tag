@@ -1,0 +1,9 @@
+function solve(array) {
+
+    let lacationFile = array[0];
+    let alternateText = array[1];
+
+
+    let result = `<img src="${lacationFile}" alt="${alternateText}">`;
+    console.log(result);
+}
