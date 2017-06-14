@@ -1,0 +1,10 @@
+function solve(text,word) {
+
+    text = text.toLowerCase();
+    word = word.toLowerCase();
+
+    let petter = `\\b${word}\\b`;
+    let regex = text.match(new RegExp(petter, 'g'));
+
+    console.log(regex ? regex.length : 0);
+}
