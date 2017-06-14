@@ -1,0 +1,15 @@
+function solve(array) {
+
+    let name = array[0];
+    let age = array[2];
+    let gender = array[4];
+
+    let person = {
+
+        [name]: array[1],
+        [age]: array[3],
+        [gender]: array[5]
+    }
+
+    console.log(person);
+}
