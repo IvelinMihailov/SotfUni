@@ -1,0 +1,17 @@
+function solve(array) {
+    let pointOne = {
+        x: array[0],
+        y: array[1],
+        z: array[2],
+    }
+    
+    let pointTwo = {
+        x: array[3],
+        y: array[4],
+        z: array[5],
+    }
+
+    let result = Math.sqrt(Math.pow((pointOne.x - pointTwo.x) ,2) + (Math.pow((pointOne.y - pointTwo.y) ,2)) + (Math.pow((pointOne.z - pointTwo.z) ,2)));
+
+    console.log(result);
+}
