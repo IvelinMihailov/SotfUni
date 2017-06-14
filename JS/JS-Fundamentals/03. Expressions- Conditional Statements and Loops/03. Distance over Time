@@ -1,0 +1,11 @@
+function solve(array) {
+    let speedOne = Number(array[0]);
+    let speedTwo = Number(array[1]);
+    let timeInSeconds = Number(array[2])/3600;
+
+    let readOne = speedOne * timeInSeconds;
+    let readTwo = speedTwo * timeInSeconds;
+    let delta = Math.abs(readOne-readTwo); // km
+    delta = delta * 1000 //m
+    console.log(delta);
+}
