@@ -1,0 +1,17 @@
+function solve(array) {
+
+    let firstElemnt = array[0];
+    let result = [firstElemnt];
+
+    for (let i = 0; i < array.length; i++) {
+        if(firstElemnt <= array[i+1])
+        {
+            firstElemnt = array[i+1];
+            result.push(firstElemnt);
+        }
+    }
+
+
+    console.log(result.join('\n'));
+    //console.log(array);
+}
