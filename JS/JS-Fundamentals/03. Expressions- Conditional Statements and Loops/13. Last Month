@@ -1,0 +1,5 @@
+function solve(array) {
+    let [day, month, year] = array;
+    let date = new Date(year,month-1,0);
+    console.log(date.getDate());
+}
