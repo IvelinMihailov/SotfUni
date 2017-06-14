@@ -1,0 +1,20 @@
+function solve(array) {
+
+    let string = '<ul>\n';
+
+    for (let i = 0; i < array.length; i++) {
+        let replaced = array[i];
+
+        replaced = replaced.split('&').join('&amp;');
+        replaced = replaced.split('<').join('&lt;');
+        replaced = replaced.split('>').join('&gt;');
+        replaced = replaced.split('"').join('&quot;');
+
+        string += `  <li>${replaced}</li>\n`;
+
+    }
+
+    string += '</ul>';
+
+    console.log(string);
+}
