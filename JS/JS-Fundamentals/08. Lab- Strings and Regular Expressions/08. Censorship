@@ -1,0 +1,14 @@
+function solve(text, words) {
+    
+    for (let current of words) {
+        let replaced = '-'.repeat(current.length);
+        let index = text.indexOf(current);
+        
+        while (index > -1) {
+            text = text.replace(current, replaced);
+            index = text.indexOf(current);
+        }
+    }
+    
+    console.log(text);
+}
