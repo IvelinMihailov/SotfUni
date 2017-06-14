@@ -1,0 +1,38 @@
+function solve(array) {
+
+    let pointOne = {
+        x1: array[0],
+        y1: array[1]
+    };
+
+    let pointTwo = {
+        x2: array[2],
+        y2: array[3]
+    };
+
+    let centrePoint = {
+        x: 0,
+        y: 0
+    };
+
+    function distance(x1,y1,x2,y2) {
+        let a = x1 - y1;
+        let b = x2 - y2;
+        let distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y2 - y1, 2));
+
+        return distance;
+    }
+
+    let OneTwo = Number.isInteger(distance(pointOne.x1,pointOne.y1,pointTwo.x2,pointTwo.y2));
+    let CenterOne = Number.isInteger(distance(pointOne.x1,pointOne.y1,centrePoint.x,centrePoint.y));
+    let CentreTwo = Number.isInteger(distance(pointTwo.x2,pointTwo.y2,centrePoint.x,centrePoint.y));
+
+    let check2 = CenterOne ? "valid":"invalid";
+    console.log(`{${pointOne.x1}, ${pointOne.y1}} to {${centrePoint.x}, ${centrePoint.y}} is ${check2}`);
+
+    let check3 = CentreTwo ? "valid":"invalid";
+    console.log(`{${pointTwo.x2}, ${pointTwo.y2}} to {${centrePoint.x}, ${centrePoint.y}} is ${check3}`);
+
+    let check1 = OneTwo ? "valid":"invalid";
+    console.log(`{${pointOne.x1}, ${pointOne.y1}} to {${pointTwo.x2}, ${pointTwo.y2}} is ${check1}`);
+}
