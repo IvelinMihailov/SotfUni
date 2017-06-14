@@ -1,0 +1,27 @@
+function solve(number) {
+
+    let table = '<table border="1">\n';
+        table += '<tr>';
+    for (let topRow = 0; topRow <= number; topRow++) {
+        let print = topRow == 0 ? `x` : `${topRow}`;
+            table += `<th>${print}</th>`;
+
+    }
+    table += '</tr>\n';
+
+
+    for (let row = 1; row <= number; row++) {
+        table += '<tr>';
+        table += `<th>${row}</th>`;
+        let currenctCol = row;
+        for (let col = 1; col <= number; col++) {
+            table += `<td>${currenctCol}</td>`;
+            currenctCol+=row;
+        }
+        table += '</tr>\n';
+    }
+
+    table+='</table>';
+
+    console.log(table);
+}
