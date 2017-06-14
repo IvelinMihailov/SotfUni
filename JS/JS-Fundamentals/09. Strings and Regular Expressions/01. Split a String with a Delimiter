@@ -1,0 +1,7 @@
+function solve(text, delimiter) {
+    let splitText = text.split(delimiter);
+    for (let i = 0; i < splitText.length; i++) {
+        let currentWord = splitText[i];
+        console.log(currentWord)
+    }
+}
