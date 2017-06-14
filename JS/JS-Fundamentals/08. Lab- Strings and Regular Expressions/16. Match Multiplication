@@ -1,0 +1,16 @@
+function solve(text) {
+    let regex = /(\-*\d+\s*)\*\s*(\-*\d\.*\d*)/g;
+
+    let currentMatch = regex.exec(text);
+
+    while (currentMatch !== null){
+        let [match ,firstNumber, secondNumber] = currentMatch;
+        Number(firstNumber);
+        Number(secondNumber);
+        let sum = firstNumber * secondNumber;
+        text = text.replace(match, sum);
+        currentMatch = regex.exec(text);
+    }
+
+    console.log(text)
+}
