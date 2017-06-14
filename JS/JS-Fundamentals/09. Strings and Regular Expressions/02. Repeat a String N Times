@@ -1,0 +1,3 @@
+function solve(text, timesForRepeat) {
+    console.log(text.repeat(timesForRepeat));
+}
