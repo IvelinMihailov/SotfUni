@@ -1,0 +1,32 @@
+function solve(array) {
+    let result = new Map();
+
+    for (let i = 0; i < array.length; i++) {
+        let tokens = array[i].split(' : ');
+        let productName = tokens[0];
+        let productPrice = Number(tokens[1]);
+        let firstLetter = Array.from(productName).shift().toUpperCase();
+
+        if(!result.has(firstLetter)){
+            result.set(firstLetter, new Map());
+        }
+
+        if(!result.get(firstLetter).has(productName)){
+            result.get(firstLetter).set(productName , productPrice);
+        }
+    }
+
+
+    let sortResult = [...result.entries()].sort(mySort);
+    function mySort(a,b) {
+        return a[0].localeCompare(b[0]);
+    }
+
+    for (let [letter , prodInfo] of sortResult){
+        console.log(`${letter}`);
+        let sortProduct = [...prodInfo].sort((a,b) => a > b);
+        for (let [product, price] of sortProduct){
+            console.log(`  ${product}: ${price}`);
+        }
+    }
+}
