@@ -1,0 +1,4 @@
+function solve(array){
+    array = array.filter((e,i) => i % 2 == 0).join(' ')
+    console.log(array);
+}
