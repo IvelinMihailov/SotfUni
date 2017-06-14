@@ -1,0 +1,29 @@
+function solve(arrayCity) {
+
+    let sales = new Map();
+
+    for (let element of arrayCity){
+        let cityTokens = element.split(' -> ');
+        let city = cityTokens[0];
+        let product = cityTokens[1];
+        let sale = cityTokens[2].split(' : ').reduce((a, b) => a * b);
+
+        if(!sales.has(city)){
+            sales.set(city, new Map());
+        }
+
+        if(!sales.get(city).has(product)){
+            sales.get(city).set(product,0);
+        }
+
+        let oldSales = sales.get(city).get(product);
+        sales.get(city).set(product, oldSales + sale);
+    }
+
+    for (let [town, productsInfo] of sales){
+        console.log(`Town - ${town}`);
+        for (let [prod , sales] of productsInfo){
+            console.log(`$$$${prod} : ${sales}`);
+        }
+    }
+}
