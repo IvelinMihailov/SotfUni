@@ -1,0 +1,28 @@
+function solve(array) {
+    let speed = Number(array[0]);
+    let zone = array[1];
+
+    function getLimitSpeed(zone) {
+        switch (zone){
+            case 'motorway': return 130;
+            case 'interstate': return 90;
+            case 'city': return 50;
+            case 'residential': return 20;
+        }
+    }
+
+    let limitSpeed = getLimitSpeed(zone);
+    
+    if(speed <= limitSpeed){
+        return '';
+    }else{
+        let diffrence = speed - limitSpeed;
+        if(diffrence <= 20){
+            return 'speeding';
+        }else if (diffrence > 20 && diffrence <= 40){
+            return 'excessive speeding';
+        }else if (diffrence > 40){
+            return 'reckless driving';
+        }
+    }
+}
