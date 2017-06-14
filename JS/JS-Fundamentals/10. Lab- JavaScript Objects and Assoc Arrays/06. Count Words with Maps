@@ -1,0 +1,20 @@
+function solve(text) {
+
+    let splitText = text[0].split(/\W+/).filter(e => e != '').map(e => e.toLowerCase());
+    let wordsCount = new Map();
+
+
+    for (let word of splitText){
+        if (!wordsCount.has(word)) {
+            wordsCount.set(word, 0)
+        }
+        wordsCount.set(word, wordsCount.get(word) + 1);
+    }
+
+    let allWords = Array.from(wordsCount).sort();
+    allWords.forEach(([word,times]) => console.log(`'${word}' -> ${times} times`));
+
+    //for (item of wordsCount){
+    //    console.log(`'${item[0]}' -> ${item[1]} times`)
+    //}
+}
