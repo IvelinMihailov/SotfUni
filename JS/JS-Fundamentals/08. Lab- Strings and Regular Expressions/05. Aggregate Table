@@ -1,0 +1,15 @@
+function solve(lines) {
+    let sum = 0;
+    let towns = [];
+
+    for (let line of lines) {
+        let townData = line.split('|');
+        let townName = townData[1].trim();
+        let income = Number(townData[2].trim());
+
+        towns.push(townName);
+        sum += income;
+    }
+
+    console.log(towns.join(', ') + '\n' + sum);
+}
