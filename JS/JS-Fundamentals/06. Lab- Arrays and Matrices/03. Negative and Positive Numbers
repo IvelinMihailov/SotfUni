@@ -1,0 +1,13 @@
+function solve(array){
+    let result = [];
+    for (let i = 0; i < array.length; i++) {
+        let currentElemnt = array[i];
+        if (currentElemnt < 0){
+            result.unshift(currentElemnt);
+        }else {
+            result.push(currentElemnt);
+        }
+    }
+    
+    console.log(result);
+}
