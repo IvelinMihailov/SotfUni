@@ -1,0 +1,52 @@
+function solve(matrix) {
+
+    function horizontal(matrix) {
+        let horizondal = matrix.map((a,i) => a.reduce((a,b) => a+b));
+        let equal = true;
+        let firstElemt = horizondal[0];
+
+        for (let i = 1; i < horizondal.length; i++) {
+            let currentElement = horizondal[i];
+            if(firstElemt != currentElement){
+                equal = false;
+                break;
+            }
+        }
+        
+        return equal;
+    }
+    
+    function vertival(matrix) {
+        let vertival = [];
+        let verticalSum =0;
+        let equal = true;
+
+        for (let j = 0; j < matrix.length; j++) {
+            for (let i = 0; i < matrix.length; i++) {
+                verticalSum += matrix[i][j];
+            }
+            vertival.push(verticalSum);
+            verticalSum=0;
+        }
+
+        let firstElement = vertival[0];
+        for (let i = 1; i < vertival.length; i++) {
+            let currentElement = vertival[i];
+            if(firstElement != currentElement){
+                equal = false;
+                break;
+            }
+        }
+
+        return equal;
+    }
+
+    let checkVertical = vertival(matrix);
+    let checkHorizintal = horizontal(matrix);
+    
+    if(checkVertical && checkHorizintal){
+        console.log('true');
+    }else {
+        console.log('false');
+    }
+}
