@@ -1,0 +1,9 @@
+function solve(array) {
+
+    let nameOfTrack = array[0];
+    let nameOfArtist= array[1];
+    let durationSong = array[2];
+
+    let result = `Now Playing: ${nameOfArtist} - ${nameOfTrack} [${durationSong}]`
+    console.log(result);
+}
