@@ -1,0 +1,12 @@
+function solve(number) {
+    let lenght = number % 2 == 0 ? number-1 : number;
+    let middle = Math.ceil(number/2);
+
+    for (let i = 1; i <= lenght; i++) {
+        if(i === 1 || i === lenght || i === middle){
+            console.log(`+${'-'.repeat(number-2)}+${'-'.repeat(number-2)}+`)
+        }else {
+            console.log(`|${' '.repeat(number-2)}|${' '.repeat(number-2)}|`)
+        }
+    }
+}
