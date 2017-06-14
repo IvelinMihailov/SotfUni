@@ -1,0 +1,6 @@
+function solve(text) {
+    text=text.toString()
+    let pattern = /^[a-zA-Z0-9]+@[a-z]+\.[a-z]{2,}$/;
+    let result = pattern.test(text);
+    console.log(result ? 'Valid':'Invalid');
+}
